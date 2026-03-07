@@ -1,5 +1,5 @@
-import { useState, useEffect, use } from "react";
-import { useParams, useNavigate, data } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 function Edit_product_admin() {
     //select tu 2 bang
     const [brand, setBrand] = useState([]);
