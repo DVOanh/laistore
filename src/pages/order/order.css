@@ -1,0 +1,36 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.status_container{
+    width: 80%;
+    margin: 0 auto;
+
+}
+
+.status_list{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+}
+
+.status{
+    text-decoration: none;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 15px 0;
+    color: black;
+    transition: color 0.3s ease;
+}
+
+.active{
+    color: orangered;
+    border-bottom: 2px solid orangered;
+}
+
+.status:hover{
+    color: orangered;
+}
+

@@ -1,0 +1,42 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.order_list{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.order_item{
+    background-color: white;
+    border-bottom-left-radius: 2px;
+    padding: 20px;
+}
+
+.action_order{
+    display: flex;
+    justify-content: right;
+}
+
+.image_order{
+    width: 100px;
+    aspect-ratio: 1/1;
+    border: 1px solid black;
+}
+
+.order_product{
+    display: flex;
+}
+
+.price_order{
+    margin-left: auto;
+}
+
+.productname_order{
+    white-space: nowrap;
+    overflow: hidden;
+}

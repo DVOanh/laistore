@@ -1,0 +1,28 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.formdangky{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 20px auto;
+    background-color: rgb(208, 208, 208);
+    gap: 20px
+}
+
+.username, .password, .confirmPassword, .email{
+    padding: 10px;
+    font-size: 16px;
+}
+
+.btndangky{
+    width: fit-content;
+    padding: 10px 30px;
+    margin: 0 auto;
+    font-size: 16px;
+    cursor: pointer;
+}
