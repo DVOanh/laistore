@@ -9,7 +9,7 @@ function Cart() {
     });
     console.log('ID user: ' + user.user_id);
     useEffect(() => {
-        fetch(`http://localhost:3000/cart/${user.user_id}`)
+        fetch(`https://backend-production-63ce7.up.railway.app/cart/${user.user_id}`)
             .then(res => {
                 return res.json();
             })

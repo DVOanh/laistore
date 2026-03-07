@@ -30,7 +30,7 @@ function Header() {
 
     useEffect(() => {
         if (!user?.user_id) return;
-        fetch(`http://localhost:3000/cart/slgh/${user.user_id}`)
+        fetch(`https://backend-production-63ce7.up.railway.app/cart/slgh/${user.user_id}`)
             .then(res => {
                 return res.json();
             })

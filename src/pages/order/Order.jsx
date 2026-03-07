@@ -9,7 +9,7 @@ function Order() {
     const {status_id} = useParams();
 
     useEffect(() => {
-        fetch('http://localhost:3000/order_status')
+        fetch('https://backend-production-63ce7.up.railway.app/order_status')
             .then(res => {
                 return res.json();
             })

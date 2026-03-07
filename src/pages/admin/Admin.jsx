@@ -7,7 +7,7 @@ function Dashboard() {
     const [thunho, setThunho] = useState(false);
     useEffect(() => {
         const token = localStorage.getItem('token');
-        fetch('http://localhost:3000/admin/dashboard', {
+        fetch('https://backend-production-63ce7.up.railway.app/admin/dashboard', {
             method: 'GET',
             headers: {
                 "Authorization": `Bearer ${token}`

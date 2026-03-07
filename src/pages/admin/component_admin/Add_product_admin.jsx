@@ -27,7 +27,7 @@ function Add_product_admin(){
 
     function themsanpham(e){
         e.preventDefault();
-        fetch("http://localhost:3000/products/insert_pr_admin", {
+        fetch("https://backend-production-63ce7.up.railway.app/products/insert_pr_admin", {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'
@@ -48,7 +48,7 @@ function Add_product_admin(){
     }
 
     useEffect(()=>{
-        fetch ('http://localhost:3000/categories')
+        fetch ('https://backend-production-63ce7.up.railway.app/categories')
         .then(res=>res.json())
         .then(data=>{
             setCategories(data);
@@ -56,7 +56,7 @@ function Add_product_admin(){
     }, []);
 
     useEffect(()=>{
-        fetch ('http://localhost:3000/brand')
+        fetch ('https://backend-production-63ce7.up.railway.app/brand')
         .then(res=>res.json())
         .then(data=>{
             setBrand(data);

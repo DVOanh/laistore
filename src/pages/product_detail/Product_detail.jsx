@@ -38,7 +38,7 @@ function Product_detail() {
             nav('/login');
             return;
         }
-        fetch('http://localhost:3000/cart/addcart', {
+        fetch('https://backend-production-63ce7.up.railway.app/cart/addcart', {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ function Product_detail() {
     const { id } = useParams();
     console.log(id);
     useEffect(() => {
-        fetch(`http://localhost:3000/products/${id}`)
+        fetch(`https://backend-production-63ce7.up.railway.app/products/${id}`)
             .then(res => {
 
                 return res.json();
@@ -71,7 +71,7 @@ function Product_detail() {
     }, [id]);
 
     useEffect(() => {
-        fetch(`http://localhost:3000/review/${id}`)
+        fetch(`https://backend-production-63ce7.up.railway.app/review/${id}`)
             .then(res => { return res.json(); })
             .then(review => {
                 console.log(review);
@@ -80,7 +80,7 @@ function Product_detail() {
     }, [id]);
 
     useEffect(() => {
-        fetch(`http://localhost:3000/review/sl/${id}`)
+        fetch(`https://backend-production-63ce7.up.railway.app/review/sl/${id}`)
             .then(res => { return res.json(); })
             .then(sl => {
                 console.log(sl);

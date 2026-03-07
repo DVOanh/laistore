@@ -7,7 +7,7 @@ function Product() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch('http://localhost:3000/products')
+    fetch('https://backend-production-63ce7.up.railway.app/products')
       .then(res => res.json())
       .then(data => {
         console.log(data);

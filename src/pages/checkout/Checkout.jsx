@@ -28,7 +28,7 @@ function Checkout() {
             alert("Vui lòng nhập đầy đủ thông tin");
             return;
         }
-        fetch('http://localhost:3000/order/checkout', {
+        fetch('https://backend-production-63ce7.up.railway.app/order/checkout', {
             method: 'POST',
             headers: {
                 'Content-Type':'application/json'
