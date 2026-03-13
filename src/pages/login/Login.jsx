@@ -37,7 +37,6 @@ function Login() {
                     localStorage.setItem("user", JSON.stringify(data.user));
                     if (data.user.role === "admin") {
                         navigate('/admin/dashboard', { replace: true });
-                        window.location.reload();
                     }
                     else if (data.user.role === 'user') {
                         navigate(from, { replace: true });
@@ -46,12 +45,10 @@ function Login() {
                     else {
                         alert('Role ko hop le');
                     }
-
                 }
                 else {
                     alert("DDawnf nhap that bai")
                 }
-
             })
             .catch(err => {
                 alert(err.message);
