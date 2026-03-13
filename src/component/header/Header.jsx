@@ -30,7 +30,7 @@ function Header() {
 
     useEffect(() => {
         if (!user?.user_id) return;
-        fetch(`https://backend-viv4.onrender.com/cart/slgh/${user.user_id}`)
+        fetch(`backend-production-f0ff.up.railway.app/cart/slgh/${user.user_id}`)
             .then(res => {
                 return res.json();
             })

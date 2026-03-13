@@ -5,7 +5,7 @@ function DsspSearch({ kw }) {
     const [dssp, setDssp] = useState([]);
 
     useEffect(() => {
-        fetch(`https://backend-viv4.onrender.com/products/search-suggest?keyword=${kw}`)
+        fetch(`backend-production-f0ff.up.railway.app/products/search-suggest?keyword=${kw}`)
             .then(res => {
                 return res.json();
             })

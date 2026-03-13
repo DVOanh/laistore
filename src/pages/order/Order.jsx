@@ -9,7 +9,7 @@ function Order() {
     const {status_id} = useParams();
 
     useEffect(() => {
-        fetch('https://backend-viv4.onrender.com/order_status')
+        fetch('backend-production-f0ff.up.railway.app/order_status')
             .then(res => {
                 return res.json();
             })

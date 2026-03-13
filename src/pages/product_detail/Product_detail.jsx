@@ -38,7 +38,7 @@ function Product_detail() {
             nav('/login');
             return;
         }
-        fetch('https://backend-viv4.onrender.com/cart/addcart', {
+        fetch('backend-production-f0ff.up.railway.app/cart/addcart', {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ function Product_detail() {
     const { id } = useParams();
     console.log(id);
     useEffect(() => {
-        fetch(`https://backend-viv4.onrender.com/products/${id}`)
+        fetch(`backend-production-f0ff.up.railway.app/products/${id}`)
             .then(res => {
 
                 return res.json();
@@ -71,7 +71,7 @@ function Product_detail() {
     }, [id]);
 
     useEffect(() => {
-        fetch(`https://backend-viv4.onrender.com/review/${id}`)
+        fetch(`backend-production-f0ff.up.railway.app/review/${id}`)
             .then(res => { return res.json(); })
             .then(review => {
                 console.log(review);
@@ -80,7 +80,7 @@ function Product_detail() {
     }, [id]);
 
     useEffect(() => {
-        fetch(`https://backend-viv4.onrender.com/review/sl/${id}`)
+        fetch(`backend-production-f0ff.up.railway.app/review/sl/${id}`)
             .then(res => { return res.json(); })
             .then(sl => {
                 console.log(sl);

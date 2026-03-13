@@ -28,7 +28,7 @@ function Checkout() {
             alert("Vui lòng nhập đầy đủ thông tin");
             return;
         }
-        fetch('https://backend-viv4.onrender.com/order/checkout', {
+        fetch('backend-production-f0ff.up.railway.app/order/checkout', {
             method: 'POST',
             headers: {
                 'Content-Type':'application/json'

@@ -27,7 +27,7 @@ function Add_product_admin(){
 
     function themsanpham(e){
         e.preventDefault();
-        fetch("https://backend-viv4.onrender.com/products/insert_pr_admin", {
+        fetch("backend-production-f0ff.up.railway.app/products/insert_pr_admin", {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'
@@ -48,7 +48,7 @@ function Add_product_admin(){
     }
 
     useEffect(()=>{
-        fetch ('https://backend-viv4.onrender.com/categories')
+        fetch ('backend-production-f0ff.up.railway.app/categories')
         .then(res=>res.json())
         .then(data=>{
             setCategories(data);
@@ -56,7 +56,7 @@ function Add_product_admin(){
     }, []);
 
     useEffect(()=>{
-        fetch ('https://backend-viv4.onrender.com/brand')
+        fetch ('backend-production-f0ff.up.railway.app/brand')
         .then(res=>res.json())
         .then(data=>{
             setBrand(data);

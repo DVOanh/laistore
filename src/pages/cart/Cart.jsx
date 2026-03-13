@@ -9,7 +9,7 @@ function Cart() {
     });
     console.log('ID user: ' + user.user_id);
     useEffect(() => {
-        fetch(`https://backend-viv4.onrender.com/cart/${user.user_id}`)
+        fetch(`backend-production-f0ff.up.railway.app/cart/${user.user_id}`)
             .then(res => {
                 return res.json();
             })
