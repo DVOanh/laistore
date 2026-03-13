@@ -6,7 +6,7 @@ function OrderStatus() {
     const token = localStorage.getItem("token");
     const { status_id } = useParams();
     useEffect(() => {
-        let url = 'https://backend-production-63ce7.up.railway.app/order';
+        let url = 'https://backend-viv4.onrender.com/order';
         if(status_id){
             url += `?status_id=${status_id}`;
         }

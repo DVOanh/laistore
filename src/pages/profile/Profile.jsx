@@ -8,7 +8,7 @@ function Profile(){
     const [data, setData] = useState(null);
     useEffect(()=>{
         document.title="trang ca nhan";
-        fetch(`https://backend-production-63ce7.up.railway.app/user/${id}`)
+        fetch(`https://backend-viv4.onrender.com/user/${id}`)
         .then(res =>{
             if (!res.ok){
              throw new Error('Co loi');   

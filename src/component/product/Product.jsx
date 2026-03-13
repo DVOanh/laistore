@@ -7,7 +7,7 @@ function Product() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch('https://backend-production-63ce7.up.railway.app/products')
+    fetch('https://backend-viv4.onrender.com/products')
       .then(res => res.json())
       .then(data => {
         console.log(data);
