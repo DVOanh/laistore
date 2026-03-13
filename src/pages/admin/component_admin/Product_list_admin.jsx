@@ -5,7 +5,7 @@ function Product_list_admin() {
     const [product, setProduct] = useState([]);
     function del_product_admin(product_id) {
         if (confirm('Bạn muốn xóa sản phẩm này?')) {
-            fetch(`backend-production-f0ff.up.railway.app/products/product_admin/${product_id}`, {
+            fetch(`https://backend-production-f0ff.up.railway.app/products/product_admin/${product_id}`, {
                 method: 'DELETE',
 
             })
@@ -19,7 +19,7 @@ function Product_list_admin() {
         return;
     }
     useEffect(() => {
-        fetch('backend-production-f0ff.up.railway.app/products/product_admin')
+        fetch('https://backend-production-f0ff.up.railway.app/products/product_admin')
             .then(res => {
                 return res.json();
             })
