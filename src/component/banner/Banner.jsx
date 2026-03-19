@@ -10,18 +10,18 @@ function Banner() {
             slidesPerView={1} loop={true} 
             autoplay={{ delay: 3000, disableOnInteraction: false }} 
             pagination={{ clickable: true }}
-            navigation={true} style={{width: '80%'}}>
+            navigation={true} className='banner_container'>
             
             <SwiperSlide>
-                <img src="/banner1.jpg" alt="" style={{width: "100%", height: '320px', objectFit: 'cover'}}/>
+                <img src="/banner1.jpg" alt="" className='banner_img'/>
             </SwiperSlide>
             
             <SwiperSlide>
-                <img src="/banner4.jpg" alt="" style={{width: "100%", height: '320px', objectFit: 'cover'}}/>
+                <img src="/banner4.jpg" alt="" className='banner_img'/>
             </SwiperSlide>
 
             <SwiperSlide>
-                <img src="/banner3.jpg" alt="" style={{width: "100%", height: '320px', objectFit: 'cover'}}/>
+                <img src="/banner3.jpg" alt="" className='banner_img'/>
             </SwiperSlide>
         </Swiper>
     )

@@ -20,8 +20,20 @@
     color: #000000DE;
     transition: background 0.2s ease;
     text-transform: lowercase;
+    box-sizing: border-box;
 }
 
 .searchItem:hover{
     background: rgb(236, 236, 236);
+}
+
+@media only screen and (max-width: 719px){
+    .searchlist{
+        width: 60%;
+    }
+
+    .searchItem{
+        box-sizing: border-box;
+    }
+
 }

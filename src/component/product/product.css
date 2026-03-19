@@ -6,6 +6,10 @@
     gap: 10px;
     grid-template-columns: repeat(6, 1fr);
 }
+.product_container{
+    width: 80%;
+    margin: 30px auto;
+}
 
 .product_item {
     border: 1px solid rgb(221, 221, 221);
@@ -73,4 +77,16 @@
     margin: 20px;
     font-size: 18px;
     color: red;
+}
+
+@media only screen and (max-width: 719px){
+    .product_container{
+        width: 100%;
+        margin: 0;
+    }
+    .product_list{
+        gap: 7px;
+        grid-template-columns: repeat(2, 1fr);
+        margin: 7px;
+    }
 }

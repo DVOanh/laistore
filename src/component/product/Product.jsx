@@ -22,7 +22,7 @@ function Product() {
     return <Loading />
   }
   return (
-    <div style={{width: '80%', margin: '30px auto'}}>
+    <div className='product_container'>
       <div className='tieudesp'>
         <p>SẢN PHẨM NỔI BẬT</p>
       </div>

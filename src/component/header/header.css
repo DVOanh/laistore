@@ -25,6 +25,9 @@ header {
     position: relative;
 }
 
+.hihi h5{
+    color: white;
+}
 
 .thaotac {
     width: 150px;
@@ -165,6 +168,17 @@ header {
     display: flex;
     align-items: center;
 }
+.logo_link{
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    gap: 7px;
+    color: white
+}
+
+.logo_link h1{
+    font-weight: 100;
+}
 
 .input_search{
     outline: none;
@@ -197,4 +211,21 @@ header {
     width: 70%;
     height: 70%;
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(310deg) brightness(110%) contrast(102%);
+}
+
+@media only screen and (max-width: 719px){
+    .head_container{
+        width: 100%;
+        padding: 0 7px;
+    }
+    .logo_link h1{
+        display: none;
+    }
+
+    .input_search{
+        min-width: 60%;
+    }
+    .hihi h5{
+        display: none;
+    }
 }

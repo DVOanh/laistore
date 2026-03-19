@@ -45,9 +45,9 @@ function Header() {
         <header>
             <div className='head_container'>
                 <div style={{display: 'flex', alignItems: 'center'}}>
-                    <Link to={'/'} style={{display: 'flex', textDecoration: 'none', alignItems: 'center', gap: '7px', color: 'white'}}>
+                    <Link to={'/'} className='logo_link'>
                         <img src="/logo_laistore.png" alt="" style={{ width: '60px' }} />
-                        <h1 style={{fontWeight: 100}}>Lai Store</h1>
+                        <h1>Lai Store</h1>
                     </Link>
 
                 </div>
@@ -73,7 +73,7 @@ function Header() {
                     <div className='hihi'>
                         <Link to={`/profile/${user.user_id}`} className='user'>
                             <img src={`/${user.avatar}`} />
-                            <h5 style={{ color: "white" }}>{user.username}</h5>
+                            <h5>{user.username}</h5>
                             
                         </Link> 
                         <div className='dr_arrow'>
