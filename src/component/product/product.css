@@ -89,4 +89,8 @@
         grid-template-columns: repeat(2, 1fr);
         margin: 7px;
     }
+
+    .tieudesp p{
+        margin: 15px;
+    }
 }

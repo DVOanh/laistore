@@ -16,6 +16,8 @@ body {
     width: 100%;
     padding: 30px 0;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .container {
@@ -28,23 +30,74 @@ body {
     width: 100%;
 }
 
+.tieude_danhmuc{
+    font-weight: 100;
+    font-size: 20px;
+    padding: 20px;
+}
+
+.danhmuccontainer{
+    margin: 20px auto;
+    width: 80%;
+    background-color: white;
+}
+
+.danhmuclist{
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    width: 100%;
+    
+}
+
+.danhmucitem{
+    border: 1px solid gray;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+}
+
+
+
 @media only screen and (max-width: 719px) {
     .container {
         width: 100%;
 
     }
 
+    .banner{
+        background-color: rgba(255, 255, 255, 0);
+    }
+    
     .banner_container {
-        width: 100%;
+        width: 97%;
+        margin: 7px auto;
+        box-sizing: border-box;
     }
 
     .banner_img {
         aspect-ratio: 3/1;
         object-fit: cover;
+        border-radius: 10px;
         width: 100%;
     }
 
     .banner {
         padding: 0;
+    }
+
+    .danhmuccontainer{
+        width: 97%;
+        margin: 10px auto;
+    }
+    .danhmuclist{
+        grid-template-columns: repeat(8, 1fr);
+    }
+
+    .banner_danhmuc{
+        display: flex;
+        flex-direction: column-reverse;
     }
 }
