@@ -98,7 +98,7 @@ function Checkout() {
                         }}
                     ></textarea>
                     <h1>Phương thức thanh toán</h1>
-                    <div style={{ backgroundColor: "gray" }}>
+                    <div>
                         <div>
                             Thanh toán khi nhận hàng
                             <input

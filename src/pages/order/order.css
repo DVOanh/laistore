@@ -34,3 +34,18 @@
     color: orangered;
 }
 
+@media only screen and (max-width: 768px){
+    .status_container{
+        width: 100%;
+    }
+    .status_list{
+        width: auto;
+        scrollbar-width: auto;
+        display: flex;
+        overflow-x: auto;
+    }
+    .status{
+        white-space: nowrap;
+        padding: 16px;
+    }
+}

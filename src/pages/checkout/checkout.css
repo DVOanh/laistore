@@ -1,21 +1,113 @@
-*{
-    padding: 0;
-    margin: 0;
+.checkoutContainer {
+    display: flex;
+    gap: 24px;
+    padding: 30px;
+    background: #f5f5f5;
+    max-width: 1200px;
+    margin: auto;
 }
 
-.checkoutContainer{
-    width: 80%;
-    margin: 20px auto;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    background-color: white;
-}
-
-.infoproduct, .form{
+/* CARD CHUNG */
+.infoproduct, .form {
+    background: #fff;
+    border-radius: 16px;
     padding: 20px;
-    box-sizing: border-box;
+    flex: 1;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
 }
 
-.form{
-    border-left: 1px solid rgb(217, 217, 217);
+/* TITLE */
+.infoproduct h1,
+.form h1 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+/* IMAGE */
+.infoproduct img {
+    width: 100%;
+    border-radius: 12px;
+    background: #fafafa;
+    padding: 10px;
+}
+
+/* TEXT */
+.infoproduct p {
+    margin: 6px 0;
+    font-size: 15px;
+}
+
+/* INPUT */
+.form input,
+.form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.form input:focus,
+.form textarea:focus {
+    border-color: #ff5722;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255,87,34,0.1);
+}
+
+/* PAYMENT BOX */
+.form > form > div {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    background: #fafafa;
+    border: 1px solid #eee;
+}
+
+/* RADIO STYLE XỊN */
+.form input[type="radio"] {
+    accent-color: #ff5722;
+    transform: scale(1.2);
+}
+
+/* FLEX PAYMENT */
+.form > form > div > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+/* BUTTON */
+.form button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff5722, #ff784e);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255,87,34,0.3);
+}
+
+@media (max-width: 768px) {
+    .checkoutContainer {
+        padding: 7px;
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .infoproduct, .form {
+        width: 100%;
+    }
 }

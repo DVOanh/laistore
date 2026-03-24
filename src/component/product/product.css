@@ -4,6 +4,7 @@
     margin: 10px auto;
     display: grid;
     gap: 10px;
+    box-sizing: border-box;
     grid-template-columns: repeat(6, 1fr);
 }
 .product_container{
@@ -83,11 +84,13 @@
     .product_container{
         width: 100%;
         margin: 0;
+        
     }
     .product_list{
+        width: 100%;
         gap: 7px;
         grid-template-columns: repeat(2, 1fr);
-        margin: 7px;
+        padding: 7px;
     }
 
     .tieudesp p{
