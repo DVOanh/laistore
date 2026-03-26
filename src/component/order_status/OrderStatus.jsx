@@ -35,41 +35,41 @@ function OrderStatus() {
         switch (status) {
             case 6: // Chờ xác nhận
                 return (
-                    <>
-                        <button>Hủy đơn</button>
-                        <button>Xem chi tiết</button>
-                    </>
+                    <div className="btn">
+                        <button className="btnorder huydon">Hủy đơn</button>
+                        <button className="btnorder xemchitiet">Xem chi tiết</button>
+                    </div>
                 );
 
             case 7: // Đã xác nhận
                 return (
-                    <>
-                        <button>Hủy đơn</button>
-                        <button>Xem chi tiết</button>
-                    </>
+                    <div className="btn">
+                        <button className="btnorder huydon">Hủy đơn</button>
+                        <button className="btnorder xemchitiet">Xem chi tiết</button>
+                    </div>
                 );
 
             case 8: // Đang giao
                 return (
-                    <>
-                        <button>Theo dõi</button>
-                        <button>Xem chi tiết</button>
-                    </>
+                    <div className="btn">
+                        <button className="btnorder theodoi">Theo dõi</button>
+                        <button className="btnorder xemchitiet">Xem chi tiết</button>
+                    </div>
                 );
 
             case 9: // Hoàn thành
                 return (
-                    <>
-                        <button>Mua lại</button>
-                        <button>Đánh giá</button>
-                    </>
+                    <div className="btn">
+                        <button className="btnorder mualai">Mua lại</button>
+                        <button className="btnorder danhgia">Đánh giá</button>
+                    </div>
                 );
 
             case 10: // Đã hủy
                 return (
-                    <>
-                        <button>Đặt lại</button>
-                    </>
+                    <div className="btn">
+                        <button className="btnorder datlai">Đặt lại</button>
+                    </div>
                 );
 
             default:
@@ -82,13 +82,16 @@ function OrderStatus() {
                 <div className="order_item">
                     <div className="order_product">
                         <img src={`/${item.image_url}`} className="image_order"/>
-                        <div>
+                        <div className="info_order">
                             <p className="productname_order">{item.product_name}</p>
-                            <p>RAM {item.ram}</p>
-                            <p>x{item.soluong_sp}</p>
+                            <div className="phanloai">
+                                <p>Phân loại: RAM {item.ram}</p>
+                                <p>x{item.soluong_sp}</p>
+                            </div>
                         </div>
-                        <h1 className="price_order">{Number(item.tongtien).toLocaleString("vi-VN")} đ</h1>
+                        
                     </div>
+                    <p className="price_order">Tổng số tiền ({item.soluong_sp} sản phẩm): <span style={{fontWeight: "600"}}>{Number(item.tongtien).toLocaleString("vi-VN")}đ</span></p>
                     <div className="action_order">{renderAction(item.status_id)}</div>
                 </div>
             ))}

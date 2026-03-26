@@ -41,6 +41,10 @@ body{
 .user_rv{
     text-decoration: none;
 }
+
+.star{
+    font-size: 12px;
+}
 @media (max-width: 768px) {
 
     /* layout chính */
@@ -166,4 +170,5 @@ body{
     background: #fafafa;
     padding: 10px;
     border-radius: 10px;
+}
 }

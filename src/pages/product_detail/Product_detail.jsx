@@ -117,6 +117,7 @@ function Product_detail() {
             </div>
 
             <div className='review'>
+                <h1>ĐÁNH GIÁ SẢN PHẨM</h1>
                 {
                     slstar.map(item => (
                         <p>{item.tbc + "⭐".repeat(item.tbc)}</p>
@@ -130,8 +131,8 @@ function Product_detail() {
                                 <h1>{item.username}</h1>
                                 <p>{new Date(item.created_at).toLocaleString('vi-VN')}</p>
                             </Link>
-                            <h1>{"⭐".repeat(Number(item.star))}</h1>
-                            <h1>{item.content}</h1>
+                            <h1 className="star">{"⭐".repeat(Number(item.star))}</h1>
+                            <p>{item.content}</p>
 
                         </div>
                     ))

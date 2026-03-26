@@ -223,9 +223,23 @@ header {
     }
 
     .input_search{
-        min-width: 60%;
+        min-width: 50px;
     }
     .hihi h5{
         display: none;
     }
+
+    .iconcart img{
+        width: 20px;
+    }
+
+    .cartcount {
+    top: -7px;
+    right: -10px;
+    font-size: 10px;
+}
+
+.arrow {
+    
+}
 }

@@ -61,16 +61,17 @@ function Checkout() {
         <div className="checkoutContainer">
             
             <div className="infoproduct">
-                <h1>Thong tin sản phẩm</h1>
-                <div>So luong: {product.soluong}</div>
+                <h1>Thông tin sản phẩm</h1>
+                
                 <div style={{width: '50%'}}><img src={`/${product.image_url}`} alt="" style={{width: '100%'}}/></div>
-                <p>{product.product_name}</p>
+                <p>Tên sản phẩm: {product.product_name}</p>
                 <p>Đơn giá: {Number(product.price).toLocaleString('vi-VN')}</p>
+                <div>Số lượng: {product.soluong}</div>
                 <p>Tổng tiền: {Number(tongtien).toLocaleString('vi-VN')} đ</p>
-                <h1>{user.user_id}</h1>
+                
             </div>
             <div className="form">
-                <form onSubmit={dathang}>
+                <form onSubmit={dathang} className="phom">
                     <h1>Thông tin giao hàng</h1>
                     <input
                         type="text"
@@ -97,10 +98,10 @@ function Checkout() {
                             setAddress(e.target.value);
                         }}
                     ></textarea>
-                    <h1>Phương thức thanh toán</h1>
-                    <div>
+                    <h1 className="tieudepttt">Phương thức thanh toán</h1>
+                    <div className="khoipttt">
                         <div>
-                            Thanh toán khi nhận hàng
+                            <label>Thanh toán khi nhận hàng</label>
                             <input
                                 type="radio"
                                 value={"cod"}
@@ -112,7 +113,7 @@ function Checkout() {
                             />
                         </div>
                         <div>
-                            Thanh toán bằng chuyển khoản
+                            <label className="label_pttt">Thanh toán bằng chuyển khoản</label>
                             <input
                                 type="radio"
                                 value={"bank"}
@@ -123,8 +124,8 @@ function Checkout() {
                                 }}
                             />
                         </div>
-                        <div>
-                            Thanh toán bằng MOMO
+                        <div >
+                            <label>Thanh toán bằng MOMO</label>
                             <input
                                 type="radio"
                                 value={"momo"}
@@ -135,6 +136,10 @@ function Checkout() {
                                 }}
                             />
                         </div>
+                        
+                    </div>
+                    <div>
+                        <label htmlFor="">Ghi chú</label>
                         <input
                             type="text"
                             placeholder="Ghi chú"
@@ -144,7 +149,13 @@ function Checkout() {
                             }}
                         />
                     </div>
-                    <button type="submit">Đặt Hàng</button>
+                    <div className="khoidathang">
+                        <div>
+                            Tổng cộng
+                            <span>{Number(tongtien).toLocaleString('vi-VN')}đ</span>
+                        </div>
+                        <button type="submit" className="btndathang">Đặt Hàng</button>
+                    </div>   
                 </form>
             </div>
         </div>

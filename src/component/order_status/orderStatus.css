@@ -7,14 +7,55 @@
 .order_list{
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-top: 12px;
+    gap: 7px;
+    margin-top: 5px;
 }
 
 .order_item{
     background-color: white;
     border-bottom-left-radius: 2px;
-    padding: 20px;
+    padding: 10px;
+    border-radius: 15px;
+    margin: 0 7px;
+}
+
+.btn{
+    display: flex;
+    gap: 7px;
+}
+
+.btnorder{
+    border-radius: 7px;
+    border: 2px solid gray;
+    background-color: white;
+    padding: 7px 10px;
+    cursor: pointer;
+}
+
+.danhgia{
+    border: 2px solid orangered;
+}
+.xemchitiet{
+    border: 2px solid rgb(0, 128, 43);
+    color: green;
+}
+
+.price_order{
+    margin: 10px 0;
+    width: fit-content;
+    margin-left: auto;
+}
+
+.phanloai{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.phanloai p{
+    color: gray;
+    font-size: 12px;
 }
 
 .action_order{
@@ -28,8 +69,14 @@
     border: 1px solid black;
 }
 
+.info_order{
+    width: 100%;
+    margin-left: 5px;
+}
+
 .order_product{
     display: flex;
+    width: 100%;
 }
 
 .price_order{
@@ -37,6 +84,8 @@
 }
 
 .productname_order{
+    max-width: 200px;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
 }

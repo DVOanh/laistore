@@ -10,11 +10,14 @@
 /* CARD CHUNG */
 .infoproduct, .form {
     background: #fff;
-    border-radius: 16px;
+    border-radius: 7px;
     padding: 20px;
     flex: 1;
     box-shadow: 0 4px 20px rgba(0,0,0,0.06);
 }
+
+
+
 
 /* TITLE */
 .infoproduct h1,
@@ -57,19 +60,21 @@
     box-shadow: 0 0 0 2px rgba(255,87,34,0.1);
 }
 
-/* PAYMENT BOX */
-.form > form > div {
-    margin-top: 15px;
-    padding: 15px;
-    border-radius: 12px;
-    background: #fafafa;
-    border: 1px solid #eee;
-}
+
 
 /* RADIO STYLE XỊN */
 .form input[type="radio"] {
     accent-color: #ff5722;
     transform: scale(1.2);
+    width: fit-content;
+}
+
+.tieudepttt{
+    margin: 15px 0;
+}
+
+.label_pttt{
+    width: 100%;
 }
 
 /* FLEX PAYMENT */
@@ -80,9 +85,16 @@
     margin: 10px 0;
 }
 
+.khoipttt{
+    border: 1px solid rgb(234, 234, 234);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
 /* BUTTON */
 .form button {
-    margin-top: 20px;
+    background-color: white;
     width: 100%;
     padding: 14px;
     border: none;
@@ -110,4 +122,22 @@
     .infoproduct, .form {
         width: 100%;
     }
+    .btndathang{
+        position: sticky;
+        bottom: 10px;
+    }
+
+    .khoidathang{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    border: 1px solid rgb(238, 238, 238);
+    right: 0;
+    border-radius: 7px;
+    background-color: white;
+    padding: 5px;
+    margin-top: 15px;
+}
 }
