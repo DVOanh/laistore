@@ -1,8 +1,9 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { data, useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './product_detail.css';
 import { Link } from 'react-router-dom';
 import Loading from '../../component/loading/Loading';
+import {jwtDecode} from 'jwt-decode';
 
 
 function Product_detail() {
@@ -12,6 +13,11 @@ function Product_detail() {
     const [slstar, setSlStar] = useState([]);
     const nav = useNavigate();
     const token = localStorage.getItem('token');
+    const [motasp, setMotasp] = useState([]);
+    const [thongso, setThongso] = useState([]);
+    // const [slgh, setSlgh] = useState(0);
+    // const decode = jwtDecode(token);
+
     function btnCongSl() {
         setSoluong(soluong + 1);
     }
@@ -21,26 +27,38 @@ function Product_detail() {
             setSoluong(soluong - 1)
         }
     }
-    
-    function muangay(){
+
+    function muangay() {
         const data = {
-            product_variant_id:  product.id,
+            product_variant_id: product.id,
             soluong: soluong,
             image_url: product.image_url,
             product_name: product.product_name,
             price: product.price
         }
-        nav(`/checkout/${product.id}`, {state: data});
+        nav(`/checkout/${product.id}`, { state: data });
     }
 
+    // const fetchSlCart = () => {
+    //     if (!decode?.id) return;
+    //     fetch(`https://backend-production-f0ff.up.railway.app/cart/slgh/${decode.id}`)
+    //         .then(res => {
+    //             return res.json();
+    //         })
+    //         .then(data => {
+    //             setSlgh(Number(data[0].slsp));
+    //         });
+    // }
+
     function btnthemgiohang() {
-        if(!token){
+        if (!token) {
             nav('/login');
             return;
         }
+
         fetch('https://backend-production-f0ff.up.railway.app/cart/addcart', {
             method: 'POST',
-            headers: { 
+            headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`
             },
@@ -51,7 +69,6 @@ function Product_detail() {
             })
             .then(data => {
                 console.log(data);
-                alert('Thêm giỏ hàng thành công');
                 window.location.reload();
             });
     }
@@ -88,6 +105,22 @@ function Product_detail() {
             })
     }, [id]);
 
+    useEffect(()=>{
+        fetch(`https://backend-production-f0ff.up.railway.app/thongso/${id}`)
+        .then(res => res.json())
+        .then(data => {
+            return setThongso(data);
+        })
+    }, [id]);
+
+    useEffect(() => {
+        fetch(`https://backend-production-f0ff.up.railway.app/motasp/${id}`)
+            .then(res => res.json())
+            .then(data => {
+                return setMotasp(data);
+            })
+    }, [id]);
+
     if (!product) {
         return <Loading />
     }
@@ -116,6 +149,38 @@ function Product_detail() {
                 </div>
             </div>
 
+            <div className='thongsokythuat'>
+                <h1>THÔNG SỐ KỸ THUẬT</h1>
+                {
+                    thongso.map(item=>(
+                        <div className='thongso_container'>
+                            <div className='thong_so_item'><span className='tieude_thongso'>Màn hình:</span><p> {item.man_hinh}</p></div>
+                            <br />
+                            <div className='thong_so_item'><span className='tieude_thongso'>CPU:</span><p> {item.cpu}</p></div>
+                            <br />
+                            <div className='thong_so_item'><span className='tieude_thongso'>RAM:</span><p> {item.ram}</p></div>
+                            <br />
+                            <div className='thong_so_item'><span className='tieude_thongso'>Bộ nhớ:</span><p> {item.bo_nho}</p></div>
+                            <br />
+                            <div className='thong_so_item'><span className='tieude_thongso'>Camera:</span><p> {item.camera}</p></div>
+                            <br />
+                            <div className='thong_so_item'><span className='tieude_thongso'>Pin:</span><p> {item.pin}</p></div>
+                            <br />
+                            <div className='thong_so_item'><span className='tieude_thongso'>Hệ điều hành:</span><p> {item.he_dieu_hanh}</p></div>
+                        </div>
+                    ))
+                }
+            </div>
+
+            <div className='mota'>
+                <h1>MÔ TẢ SẢN PHẨM</h1>
+                {
+                    motasp.map(item => (
+                        <p style={{ whiteSpace: 'pre-line', marginTop: "15px", lineHeight: '30px' }}>{item.description}</p>
+                    ))
+                }
+            </div>
+
             <div className='review'>
                 <h1>ĐÁNH GIÁ SẢN PHẨM</h1>
                 {
@@ -128,11 +193,16 @@ function Product_detail() {
                         <div className='review_item'>
                             <Link to={`/profile/${item.user_id}`} className='user_rv'>
                                 <img src={`/${item.avatar}`} style={{ width: "40px", borderRadius: '50%', aspectRatio: '1/1', objectFit: 'cover' }} />
-                                <h1>{item.username}</h1>
-                                <p>{new Date(item.created_at).toLocaleString('vi-VN')}</p>
+                                <div className='uname_time'>
+                                    <h1>{item.username}</h1>
+                                    <h1 className="star">{"⭐".repeat(Number(item.star))}</h1>
+                                    
+                                </div>
                             </Link>
-                            <h1 className="star">{"⭐".repeat(Number(item.star))}</h1>
-                            <p>{item.content}</p>
+                            <div className='inforeview'>
+                                <p>{new Date(item.created_at).toLocaleString('vi-VN')}</p>
+                                <p>{item.content}</p>
+                            </div>
 
                         </div>
                     ))

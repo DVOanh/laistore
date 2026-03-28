@@ -26,24 +26,56 @@ body{
     aspect-ratio: 1/1;
 }
 
-.review{
+.review, .mota, .thongsokythuat{
     width: 80%;
     margin: 20px auto;
     background-color: white;
     padding: 20px;
     box-sizing: border-box;
 }
+
+.uname_time{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.review h1, .mota h1, .thongsokythuat h1{
+    font-size: 16px;
+}
+
 .review_item{
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid rgb(216, 216, 216);
     padding: 20px 0;
 }
 
 .user_rv{
+    gap: 5px;
+    display: flex;
     text-decoration: none;
+    color: rgb(57, 57, 57);
 }
 
 .star{
-    font-size: 12px;
+    font-size: 8px;
+}
+
+.thong_so_item{
+    display: flex;
+}
+
+.thongso_container{
+    margin-top: 15px;
+}
+
+.tieude_thongso{
+    display: block;
+    min-width: 200px;
+}
+
+.inforeview{
+    margin-left: 50px;
+    margin-top: 20px;
 }
 @media (max-width: 768px) {
 
@@ -103,12 +135,14 @@ body{
         width: 100%;
         padding: 12px;
     }
-.review {
-    width: 100%;
-    margin-top: 30px;
+
+.review, .mota, .thongsokythuat {
+    width: calc(100% - 14px);
+    margin: 7px;
+    box-sizing: border-box;
     background: #fff;
     padding: 20px;
-    border-radius: 16px;
+    border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
 

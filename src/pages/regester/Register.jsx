@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './register.css';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Register() {
     const [username, setUsername] = useState('');
@@ -36,14 +37,22 @@ function Register() {
         navigate('/');
     }
     return (
-        <form className='formdangky' onSubmit={register}>
-            <input type="text" placeholder="Nhap username"
-                value={username} onChange={(e) => { setUsername(e.target.value) }} className='username'/>
-            <input type="password" placeholder="Nhap password" value={password} onChange={(e) => { setPassword(e.target.value) }} className='password'/>
-            <input type="password" placeholder="Nhap lai password" value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }} className='confirmPassword'/>
-            <input type="text" placeholder="Nhap email" value={email} onChange={(e) => { setEmail(e.target.value) }} required className='email'/>
-            <button type="submit" className='btndangky'>Đăng ký</button>
-        </form>
+        <div>
+            <form className='formdangky' onSubmit={register}>
+                <input type="text" placeholder="Nhap username"
+                    value={username} onChange={(e) => { setUsername(e.target.value) }} className='username'/>
+                <input type="password" placeholder="Nhap password" value={password} onChange={(e) => { setPassword(e.target.value) }} className='password'/>
+                <input type="password" placeholder="Nhap lai password" value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }} className='confirmPassword'/>
+                <input type="text" placeholder="Nhap email" value={email} onChange={(e) => { setEmail(e.target.value) }} required className='email'/>
+                <button type="submit" className='btndangky'>Đăng ký</button>
+            </form>
+            <div className="cotk">
+                <p>Bạn đã có tài khoản?
+                </p>
+                <Link to={'/login'}>Đăng nhập</Link>
+            </div>
+        </div>
+
     )
 }
 

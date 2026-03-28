@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./orderStatus.css";
+import Loading from "../loading/Loading";
 function OrderStatus() {
     const [order, setOrder] = useState([]);
     const token = localStorage.getItem("token");
     const { status_id } = useParams();
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
+        setLoading(true);
         let url = 'https://backend-production-f0ff.up.railway.app/order';
+        
         if(status_id){
             url += `?status_id=${status_id}`;
         }
@@ -29,8 +33,26 @@ function OrderStatus() {
             .then((data) => {
                 console.log("Data order:", data);
                 setOrder(data);
+                setLoading(false);
             });
     }, [status_id, token]);
+    function trangthaidonhang(status){
+        switch(status){
+            case 6:
+                return (<h1 className="status_name choxacnhan">Chờ xác nhận</h1>);
+            case 7:
+                return (<h1 className="status_name daxacnhan">Đã xác nhận</h1>);
+            case 8:
+                return (<h1 className="status_name danggiao">Đang giao</h1>);
+            case 9:
+                return (<h1 className="status_name hoanthanh">Hoàn thành</h1>);
+            case 10:
+                return (<h1 className="status_name dahuy">Đã hủy</h1>);
+        }
+    }
+
+    
+
     function renderAction(status) {
         switch (status) {
             case 6: // Chờ xác nhận
@@ -78,8 +100,17 @@ function OrderStatus() {
     }
     return (
         <div className="order_list">
-            {order.map((item) => (
+            {loading ?
+                (<Loading/>)
+                :
+             !order || order.length === 0 ?
+            (
+                <h1 className="kocodon">Không có đơn nào cả</h1>
+            )
+            :
+            order.map((item) => (
                 <div className="order_item">
+                    <div className="tentrangthaidonhang">{trangthaidonhang(item.status_id)}</div>
                     <div className="order_product">
                         <img src={`/${item.image_url}`} className="image_order"/>
                         <div className="info_order">

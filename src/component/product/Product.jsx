@@ -34,6 +34,7 @@ function Product() {
               <img src={`/${item.image_url}`} />
               <h3 className='product_name'>{item.product_name}</h3>
               <p className='price'>{Number(item.min_price).toLocaleString('vi-VN')} đ</p>
+              
             </Link>
           ))
         }

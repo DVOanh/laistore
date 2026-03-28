@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./login.css";
+import { Link } from "react-router-dom";
 import { useNavigate, useLocation } from 'react-router-dom';
 
 function Login() {
@@ -81,6 +82,11 @@ function Login() {
 
                 <button type="submit">Đăng nhập</button>
             </form>
+            <div className="chuacotk">
+                <p>Bạn chưa có tài khoản?
+                </p>
+                <Link to={'/register'}>Đăng ký</Link>
+            </div>
         </div>
     );
 }
