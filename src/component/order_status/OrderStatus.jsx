@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { data, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./orderStatus.css";
 import Loading from "../loading/Loading";
 import { jwtDecode } from "jwt-decode";
@@ -61,24 +61,28 @@ function OrderStatus() {
     }
 
     function huydon(order_item_id, order_id, soluong_sp, variant_id) {
-        fetch("https://backend-production-f0ff.up.railway.app/order/huydon", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + token
-            },
-            body: JSON.stringify({
-                order_item_id: order_item_id,
-                order_id: order_id,
-                soluong_sp: soluong_sp,
-                variant_id: variant_id
+        if (confirm("Bạn có chắc chắn hủy đơn hàng này")) {
+            fetch("https://backend-production-f0ff.up.railway.app/order/huydon", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + token
+                },
+                body: JSON.stringify({
+                    order_item_id: order_item_id,
+                    order_id: order_id,
+                    soluong_sp: soluong_sp,
+                    variant_id: variant_id
+                })
             })
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                alert(data.message)
-            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    alert(data.message);
+                    fetchOrder();
+                })
+        }
+
     }
 
     function renderAction(status, order_item_id, order_id, soluong_sp, variant_id) {
