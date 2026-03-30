@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { data, useParams } from "react-router-dom";
 import "./orderStatus.css";
 import Loading from "../loading/Loading";
+import { jwtDecode } from "jwt-decode";
 function OrderStatus() {
     const [order, setOrder] = useState([]);
     const token = localStorage.getItem("token");
     const { status_id } = useParams();
     const [loading, setLoading] = useState(true);
-    useEffect(() => {
+    const decode = jwtDecode(token);
+    function fetchOrder() {
+
         setLoading(true);
         let url = 'https://backend-production-f0ff.up.railway.app/order';
-        
-        if(status_id){
+
+        if (status_id) {
             url += `?status_id=${status_id}`;
         }
         fetch(url, {
@@ -35,9 +38,15 @@ function OrderStatus() {
                 setOrder(data);
                 setLoading(false);
             });
+
+    }
+    useEffect(() => {
+        fetchOrder();
     }, [status_id, token]);
-    function trangthaidonhang(status){
-        switch(status){
+
+
+    function trangthaidonhang(status) {
+        switch (status) {
             case 6:
                 return (<h1 className="status_name choxacnhan">Chờ xác nhận</h1>);
             case 7:
@@ -51,14 +60,33 @@ function OrderStatus() {
         }
     }
 
-    
+    function huydon(order_item_id, order_id, soluong_sp, variant_id) {
+        fetch("https://backend-production-f0ff.up.railway.app/order/huydon", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
+            },
+            body: JSON.stringify({
+                order_item_id: order_item_id,
+                order_id: order_id,
+                soluong_sp: soluong_sp,
+                variant_id: variant_id
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                alert(data.message)
+            })
+    }
 
-    function renderAction(status) {
+    function renderAction(status, order_item_id, order_id, soluong_sp, variant_id) {
         switch (status) {
             case 6: // Chờ xác nhận
                 return (
                     <div className="btn">
-                        <button className="btnorder huydon">Hủy đơn</button>
+                        <button className="btnorder huydon" onClick={() => huydon(order_item_id, order_id, soluong_sp, variant_id)}>Hủy đơn</button>
                         <button className="btnorder xemchitiet">Xem chi tiết</button>
                     </div>
                 );
@@ -66,7 +94,7 @@ function OrderStatus() {
             case 7: // Đã xác nhận
                 return (
                     <div className="btn">
-                        <button className="btnorder huydon">Hủy đơn</button>
+                        <button className="btnorder mualai">Mua lại</button>
                         <button className="btnorder xemchitiet">Xem chi tiết</button>
                     </div>
                 );
@@ -101,31 +129,31 @@ function OrderStatus() {
     return (
         <div className="order_list">
             {loading ?
-                (<Loading/>)
+                (<Loading />)
                 :
-             !order || order.length === 0 ?
-            (
-                <h1 className="kocodon">Không có đơn nào cả</h1>
-            )
-            :
-            order.map((item) => (
-                <div className="order_item">
-                    <div className="tentrangthaidonhang">{trangthaidonhang(item.status_id)}</div>
-                    <div className="order_product">
-                        <img src={`/${item.image_url}`} className="image_order"/>
-                        <div className="info_order">
-                            <p className="productname_order">{item.product_name}</p>
-                            <div className="phanloai">
-                                <p>Phân loại: RAM {item.ram}</p>
-                                <p>x{item.soluong_sp}</p>
+                !order || order.length === 0 ?
+                    (
+                        <h1 className="kocodon">Không có đơn nào cả</h1>
+                    )
+                    :
+                    order.map((item) => (
+                        <div className="order_item">
+                            <div className="tentrangthaidonhang">{trangthaidonhang(item.status_id)}</div>
+                            <div className="order_product">
+                                <img src={`/${item.image_url}`} className="image_order" />
+                                <div className="info_order">
+                                    <p className="productname_order">{item.product_name}</p>
+                                    <div className="phanloai">
+                                        <p>Phân loại: RAM {item.ram}</p>
+                                        <p>x{item.soluong_sp}</p>
+                                    </div>
+                                </div>
+
                             </div>
+                            <p className="price_order">Tổng số tiền ({item.soluong_sp} sản phẩm): <span style={{ fontWeight: "600" }}>{Number(item.tongtien).toLocaleString("vi-VN")}đ</span></p>
+                            <div className="action_order">{renderAction(item.status_id, item.order_item_id, item.order_id, item.soluong_sp, item.variant_id)}</div>
                         </div>
-                        
-                    </div>
-                    <p className="price_order">Tổng số tiền ({item.soluong_sp} sản phẩm): <span style={{fontWeight: "600"}}>{Number(item.tongtien).toLocaleString("vi-VN")}đ</span></p>
-                    <div className="action_order">{renderAction(item.status_id)}</div>
-                </div>
-            ))}
+                    ))}
         </div>
     );
 }
