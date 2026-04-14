@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import './product_detail.css';
 import { Link, NavLink } from 'react-router-dom';
 import Loading from '../../component/loading/Loading';
-import { jwtDecode } from 'jwt-decode';
+// import { jwtDecode } from 'jwt-decode';
 
 
 function Product_detail() {
@@ -18,7 +18,8 @@ function Product_detail() {
     const [thongtinmay, setThongtinmay] = useState([]);
 
     const location = useLocation();
-    const variant_id = location.state?.variantId;
+    const query = new URLSearchParams(location.search);
+    const variant_id = query.get("variantId");
     const [selectedVariant, setSelectedVariant] = useState(variant_id);
 
     // const [slgh, setSlgh] = useState(0);
