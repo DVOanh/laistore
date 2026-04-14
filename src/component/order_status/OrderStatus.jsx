@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./orderStatus.css";
 import Loading from "../loading/Loading";
 import { jwtDecode } from "jwt-decode";
@@ -9,10 +9,11 @@ function OrderStatus() {
     const { status_id } = useParams();
     const [loading, setLoading] = useState(true);
     const decode = jwtDecode(token);
+    const navigate = useNavigate();
     function fetchOrder() {
 
         setLoading(true);
-        let url = 'https://backend-production-f0ff.up.railway.app/order';
+        let url = 'https://backend-viv4.onrender.com/order';
 
         if (status_id) {
             url += `?status_id=${status_id}`;
@@ -60,9 +61,13 @@ function OrderStatus() {
         }
     }
 
+    function xemchitiet(order_item_id){
+        navigate(`/order_item/${order_item_id}`);
+    }
+
     function huydon(order_item_id, order_id, soluong_sp, variant_id) {
         if (confirm("Bạn có chắc chắn hủy đơn hàng này")) {
-            fetch("https://backend-production-f0ff.up.railway.app/order/huydon", {
+            fetch("https://backend-viv4.onrender.com/order/huydon", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -91,7 +96,7 @@ function OrderStatus() {
                 return (
                     <div className="btn">
                         <button className="btnorder huydon" onClick={() => huydon(order_item_id, order_id, soluong_sp, variant_id)}>Hủy đơn</button>
-                        <button className="btnorder xemchitiet">Xem chi tiết</button>
+                        <button className="btnorder xemchitiet" onClick={()=> xemchitiet(order_item_id)}>Xem chi tiết</button>
                     </div>
                 );
 
@@ -99,7 +104,7 @@ function OrderStatus() {
                 return (
                     <div className="btn">
                         <button className="btnorder mualai">Mua lại</button>
-                        <button className="btnorder xemchitiet">Xem chi tiết</button>
+                        <button className="btnorder xemchitiet" onClick={()=> xemchitiet(order_item_id)}>Xem chi tiết</button>
                     </div>
                 );
 
@@ -107,7 +112,7 @@ function OrderStatus() {
                 return (
                     <div className="btn">
                         <button className="btnorder theodoi">Theo dõi</button>
-                        <button className="btnorder xemchitiet">Xem chi tiết</button>
+                        <button className="btnorder xemchitiet" onClick={()=> xemchitiet(order_item_id)}>Xem chi tiết</button>
                     </div>
                 );
 
@@ -148,7 +153,7 @@ function OrderStatus() {
                                 <div className="info_order">
                                     <p className="productname_order">{item.product_name}</p>
                                     <div className="phanloai">
-                                        <p>Phân loại: RAM {item.ram}</p>
+                                        <p>Phân loại: RAM {item.ram}, Storage {item.storage}</p>
                                         <p>x{item.soluong_sp}</p>
                                     </div>
                                 </div>

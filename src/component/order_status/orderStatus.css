@@ -12,10 +12,22 @@
     min-height: 100vh;
 }
 
+.order_item:first-child{
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.order_item:last-child{
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-bottom: 20px;
+}
+
 .order_item{
     background-color: white;
     border-radius: 10px;
     padding: 10px;
+    border: 1px solid rgb(235, 235, 235);
 }
 
 .kocodon{

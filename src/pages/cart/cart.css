@@ -6,10 +6,105 @@
     flex-direction: column;
 
 }
+
+.cart_title{
+    position: sticky;
+    top: 80px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 1px 1px  rgb(213, 213, 213);
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    color: rgb(0, 0, 0);
+}
+
+.cart_title h1{
+    font-size: 14px;
+    font-weight: 100;
+}
+
+.cart_title h1:nth-child(2),
+.cart_title h1:nth-child(3),
+.cart_title h1:nth-child(4),
+.cart_title h1:nth-child(6),
+.cart_title h1:nth-child(5){
+    display: flex;
+    justify-content: center;
+}
+
+.cartItem > *:not(:first-child){
+    display: flex;
+    justify-content: center;
+}
+
+.cart_sp{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.thanhtien{
+    color: orangered;
+}
+
+.btnxoacart{
+     background-color: transparent;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btnxoacart:hover{
+    text-decoration: underline;
+}
+
+.cart_sl{
+    display: flex;
+    gap: 0;
+}
+
+.phanloaicart{
+    color: gray;
+    font-size: 14px;
+}
+
+.cart_sl button{
+    width: 25px;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
+
+.cart_sl input[type="text"]{
+    width: 60px;
+    outline: none;
+    display: flex;
+    text-align: center;
+}
+
+.cart_sl button, .cart_sl input[type="text"]{
+    border: 1px solid rgb(153, 153, 153);
+    font-size: 15px;
+    background-color: white;
+}
+
 .cartItem{
     background-color: white;
     padding: 20px;
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 10px;
     box-sizing: border-box;
+    align-items: center;
+}
+
+.tickcheckbox{
+    border: 1px solid gray;
+    width: 18px;
+    height: 18px;
+    accent-color: orange;
+    color: white;
 }
 
 @media (max-width: 768px) {

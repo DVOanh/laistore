@@ -7,7 +7,7 @@ function Product() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch('https://backend-production-f0ff.up.railway.app/products')
+    fetch('https://backend-viv4.onrender.com/products')
       .then(res => res.json())
       .then(data => {
         console.log(data);
@@ -30,11 +30,11 @@ function Product() {
 
         {
           data.map(item => (
-            <Link to={`/chitietsanpham/${item.product_id}`} className='product_item'>
+            <Link to={`/chitietsanpham/${item.product_id}`} className='product_item' state={{ variantId: item.variant_id }}>
               <img src={`/${item.image_url}`} />
               <h3 className='product_name'>{item.product_name}</h3>
-              <p className='price'>{Number(item.min_price).toLocaleString('vi-VN')} đ</p>
-              
+              <p className='price'>{Number(item.price).toLocaleString('vi-VN')} đ</p>
+              <p className='daban'>Đã bán {item.total_sold}</p>
             </Link>
           ))
         }

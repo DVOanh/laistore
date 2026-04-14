@@ -8,7 +8,7 @@ function Edit_product_admin() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('https://backend-production-f0ff.up.railway.app/categories')
+        fetch('https://backend-viv4.onrender.com/categories')
             .then(res => res.json())
             .then(data => {
                 setCategories(data);
@@ -16,7 +16,7 @@ function Edit_product_admin() {
     }, []);
 
     useEffect(() => {
-        fetch('https://backend-production-f0ff.up.railway.app/brand')
+        fetch('https://backend-viv4.onrender.com/brand')
             .then(res => res.json())
             .then(data => {
                 setBrand(data);
@@ -32,7 +32,7 @@ function Edit_product_admin() {
     //Modal
     const [modalStatus, setModalStatus] = useState(false);
     useEffect(() => {
-        fetch(`https://backend-production-f0ff.up.railway.app/admin/product/${product_id}`)
+        fetch(`https://backend-viv4.onrender.com/admin/product/${product_id}`)
             .then(res => res.json())
             .then(data => {
                 setProduct(data[0]);
@@ -43,7 +43,7 @@ function Edit_product_admin() {
     function editproduct(e) {
         e.preventDefault();
         if (confirm('Bạn chắc chắn muốn sửa?')) {
-            fetch(`https://backend-production-f0ff.up.railway.app/admin/productedit/${product_id}`, {
+            fetch(`https://backend-viv4.onrender.com/admin/productedit/${product_id}`, {
                 method: 'PUT',
                 headers: {
                     "Content-Type": "application/json"
@@ -76,7 +76,7 @@ function Edit_product_admin() {
     }
 
     useEffect(() => {
-        fetch("https://backend-production-f0ff.up.railway.app/admin/variant")
+        fetch("https://backend-viv4.onrender.com/admin/variant")
             .then(res => res.json())
             .then(data => {
                 setVariant(data);
@@ -84,7 +84,7 @@ function Edit_product_admin() {
     }, []);
 
     useEffect(() => {
-        fetch("https://backend-production-f0ff.up.railway.app/admin/get_product")
+        fetch("https://backend-viv4.onrender.com/admin/get_product")
             .then(res => res.json())
             .then(data => {
                 setSanpham(data);
@@ -105,7 +105,7 @@ function Edit_product_admin() {
     const [rambt, setRambt] = useState("");
     const [skubt, setSkubt] = useState("");
     function thembienthe(){
-        fetch (`https://backend-production-f0ff.up.railway.app/admin/insert_variant/${product_id}`, {
+        fetch (`https://backend-viv4.onrender.com/admin/insert_variant/${product_id}`, {
             method: 'POST',
             headers: {
                 'Content-Type' : "application/json"

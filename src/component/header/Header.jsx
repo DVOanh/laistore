@@ -23,14 +23,13 @@ function Header() {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
             setUser(null);
-            window.location.reload();
-            navigate('/login');
+            window.location.href = "/";
         }
     }
 
     useEffect(() => {
         if (!user?.user_id) return;
-        fetch(`https://backend-production-f0ff.up.railway.app/cart/slgh/${user.user_id}`)
+        fetch(`https://backend-viv4.onrender.com/cart/slgh/${user.user_id}`)
             .then(res => {
                 return res.json();
             })
@@ -79,6 +78,7 @@ function Header() {
                         <div className='dr_arrow'>
                             <div className='arrow'></div>
                             <ul className='thaotac'>
+                                <li><Link to={`/profile/${user.user_id}`} className='btntaikhoan'>Tài khoản của tôi</Link></li>
                                 <li><Link to='/order' className='btndonhang'>Đơn hàng</Link></li>
                                 <li><div onClick={btnDangxuat} className='btndangxuat'>Đăng xuất</div></li>
                             </ul>

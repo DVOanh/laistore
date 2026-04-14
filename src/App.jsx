@@ -27,6 +27,8 @@ import UserAdmin from './pages/admin/UserAdmin';
 import Product_list_admin from './pages/admin/component_admin/Product_list_admin';
 import Add_product_admin from './pages/admin/component_admin/Add_product_admin';
 import Edit_product_admin from './pages/admin/component_admin/Edit_product_admin';
+import Danhmuc_item from './pages/danhmuc_item/Danhmuc_item';
+import Chitietdonhang from './pages/chitietdonhang/Chitietdonhang';
 function App() {
   return (
     <BrowserRouter>
@@ -34,6 +36,7 @@ function App() {
       <Routes>
         <Route element={<MainLayout />}>
           <Route path='/' element={<Home />} />
+          <Route path='/categories/:iddanhmuc' element={<Danhmuc_item/>}/>
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/chitietsanpham/:id' element={<Product_detail />} />
@@ -43,6 +46,7 @@ function App() {
             <Route path="/order" element={<OrderStatus />} />
             <Route path=":status_id" element={<OrderStatus />} />
           </Route>
+          <Route path='/order_item/:order_item_id' element={<Chitietdonhang/>}/>
 
           <Route path='/giohang/:user_id' element={
             <ProtectedRouter>

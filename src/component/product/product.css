@@ -39,7 +39,7 @@
 
 .product_name,
 .price {
-    margin: 10px;
+    margin: 7px;
     font-size: 14px;
 }
 
@@ -59,6 +59,14 @@
 .price {
     color: rgb(255, 0, 0);
     font-size: 16px;
+    
+}
+
+.daban{
+    font-size: 12px;
+    margin: 0 0 10px 7px;
+    color: rgb(31, 31, 31);
+    
 }
 
 .tieudesp{

@@ -12,7 +12,7 @@ function Register() {
 
     async function register(e) {
         e.preventDefault();
-        const response = await fetch('https://backend-production-f0ff.up.railway.app/user', {
+        const response = await fetch('https://backend-viv4.onrender.com/user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

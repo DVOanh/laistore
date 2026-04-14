@@ -1,0 +1,124 @@
+.chitietdonhang_container{
+    width: 80%;
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 15px;
+    border: 1px solid rgb(234, 234, 234);
+    min-height: calc(100vh - 70px);
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.chitietdonhang{
+    width: fit-content;
+    margin: 10px auto;
+}
+
+.chitietdonhang_main{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 15px;
+}
+
+.chitietdonhang_left{
+    width: 100%;
+    min-height: calc(100vh - 70px);
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.chitietdonhang_right{
+    width: 100%;
+    min-height: calc(100vh - 70px);
+    background-color: bisque;
+}
+
+.madon{
+    background-color: rgb(252, 252, 252);
+    padding: 15px;
+    border: 1px solid rgb(217, 217, 217);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.madon_item{
+    color: blue;
+    font-weight: bold;
+}
+
+.ctsp_left_item{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 15px;
+}
+
+.tieudectdh, .spctdh{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    background-color: white;
+    text-align: center;
+}
+
+.tieudectdh div, .spctdh div{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.ctdh_khachhang, .ctdh_nguoinhan{
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+.tongtien{
+    font-weight: bold;
+    color: orangered;
+}
+
+.thongtinuserdh{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.thongtinuserdh p:first-child{
+    font-weight: bold;
+}
+
+.tieudectdh div, .spctdh div{
+    padding: 10px;
+    border: 1px solid gray;
+}
+
+.ctdh_khachhang div:first-child{
+    background-color: white;
+    padding: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.ctdh_khachhang div:first-child{
+    background-color: rgb(255, 210, 210);
+    text-transform: uppercase;
+    color: rgb(0, 0, 0);
+}
+
+.ctdh_nguoinhan div:first-child{
+    padding: 15px;
+    background-color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.ctdh_nguoinhan div:first-child{
+    background-color:  rgb(255, 210, 210);
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+}

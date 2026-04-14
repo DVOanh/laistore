@@ -1,9 +1,9 @@
-import { data, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './product_detail.css';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Loading from '../../component/loading/Loading';
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 
 function Product_detail() {
@@ -15,6 +15,12 @@ function Product_detail() {
     const token = localStorage.getItem('token');
     const [motasp, setMotasp] = useState([]);
     const [thongso, setThongso] = useState([]);
+    const [thongtinmay, setThongtinmay] = useState([]);
+
+    const location = useLocation();
+    const variant_id = location.state?.variantId;
+    const [selectedVariant, setSelectedVariant] = useState(variant_id);
+
     // const [slgh, setSlgh] = useState(0);
     // const decode = jwtDecode(token);
 
@@ -30,18 +36,18 @@ function Product_detail() {
 
     function muangay() {
         const data = {
-            product_variant_id: product.id,
+            product_variant_id: selectedVariantData.id,
             soluong: soluong,
             image_url: product.image_url,
             product_name: product.product_name,
-            price: product.price
+            price: selectedVariantData.price
         }
-        nav(`/checkout/${product.id}`, { state: data });
+        nav(`/checkout/${selectedVariantData.id}`, { state: data });
     }
 
     // const fetchSlCart = () => {
     //     if (!decode?.id) return;
-    //     fetch(`https://backend-production-f0ff.up.railway.app/cart/slgh/${decode.id}`)
+    //     fetch(`https://backend-viv4.onrender.com/cart/slgh/${decode.id}`)
     //         .then(res => {
     //             return res.json();
     //         })
@@ -55,28 +61,29 @@ function Product_detail() {
             nav('/login');
             return;
         }
-
-        fetch('https://backend-production-f0ff.up.railway.app/cart/addcart', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`
-            },
-            body: JSON.stringify({ soluong: soluong, variant_id: product.id })
-        })
-            .then(res => {
-                return res.json();
+        if (confirm("Bạn chắc chắn muốn thêm vào giỏ hàng?")) {
+            fetch('https://backend-viv4.onrender.com/cart/addcart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({ soluong: soluong, variant_id: selectedVariant })
             })
-            .then(data => {
-                console.log(data);
-                window.location.reload();
-            });
+                .then(res => {
+                    return res.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    window.location.reload();
+                });
+        }
     }
 
     const { id } = useParams();
     console.log(id);
     useEffect(() => {
-        fetch(`https://backend-production-f0ff.up.railway.app/products/${id}`)
+        fetch(`https://backend-viv4.onrender.com/products/${id}`)
             .then(res => {
 
                 return res.json();
@@ -85,10 +92,26 @@ function Product_detail() {
                 console.log(data);
                 setProduct(data);
             });
+
+    }, [id]);
+
+    const selectedVariantData = thongtinmay.find(
+        v => v.id === selectedVariant
+    );
+    useEffect(() => {
+        fetch(`https://backend-viv4.onrender.com/variant/${id}`)
+            .then(res => {
+
+                return res.json();
+            })
+            .then(data => {
+                console.log(data);
+                setThongtinmay(data);
+            });
     }, [id]);
 
     useEffect(() => {
-        fetch(`https://backend-production-f0ff.up.railway.app/review/${id}`)
+        fetch(`https://backend-viv4.onrender.com/review/${id}`)
             .then(res => { return res.json(); })
             .then(review => {
                 console.log(review);
@@ -97,7 +120,7 @@ function Product_detail() {
     }, [id]);
 
     useEffect(() => {
-        fetch(`https://backend-production-f0ff.up.railway.app/review/sl/${id}`)
+        fetch(`https://backend-viv4.onrender.com/review/sl/${id}`)
             .then(res => { return res.json(); })
             .then(sl => {
                 console.log(sl);
@@ -105,16 +128,16 @@ function Product_detail() {
             })
     }, [id]);
 
-    useEffect(()=>{
-        fetch(`https://backend-production-f0ff.up.railway.app/thongso/${id}`)
-        .then(res => res.json())
-        .then(data => {
-            return setThongso(data);
-        })
+    useEffect(() => {
+        fetch(`https://backend-viv4.onrender.com/thongso/${id}`)
+            .then(res => res.json())
+            .then(data => {
+                return setThongso(data);
+            })
     }, [id]);
 
     useEffect(() => {
-        fetch(`https://backend-production-f0ff.up.railway.app/motasp/${id}`)
+        fetch(`https://backend-viv4.onrender.com/motasp/${id}`)
             .then(res => res.json())
             .then(data => {
                 return setMotasp(data);
@@ -135,16 +158,48 @@ function Product_detail() {
 
                 </div>
                 <div className='product_right'>
-                    <h1>{product.product_name}</h1>
-                    <h3>{Number(product.price).toLocaleString('vi-VN')}đ</h3>
-                    <div>
-                        <button type='button' onClick={btnTruSl}>-</button>
-                        <input type="number" min={1} value={soluong} onChange={(e) => { setSoluong(Number(e.target.value)) }} />
-                        <button type='button' onClick={btnCongSl}>+</button>
-                    </div>
-                    <div>
-                        <button type='button' onClick={btnthemgiohang}>Thêm Vào Giỏ Hàng</button>
-                        <button type='button' onClick={muangay}>Mua Ngay</button>
+
+                    <div className='product_right_item'>
+                        <h1 className='tensp'>{product.product_name}</h1>
+                        <div className='giasp'><h3>
+                            {Number(selectedVariantData?.price).toLocaleString('vi-VN')}đ
+                        </h3></div>
+                        <div className='khoisl'>
+                            <p>Số lượng </p>
+                            <button type='button' onClick={btnTruSl} className='btntru'>-</button>
+                            <input min={1} value={soluong} className='inputsl' onChange={(e) => { setSoluong(Number(e.target.value)) }} />
+                            <button type='button' onClick={btnCongSl} className='btncong'>+</button>
+                        </div>
+                        <div className='thongtinmay'>
+                            <p>Phân loại </p>
+                            {thongtinmay.map(item => (
+                                <div
+                                    className={
+                                        selectedVariant === item.id
+                                            ? "thongtinmayitem sld"
+                                            : "thongtinmayitem"
+                                    }
+                                    onClick={() => {
+                                        setSelectedVariant(item.id);
+
+
+                                    }}
+
+                                >
+                                    {item.ram} - {item.storage}
+                                </div>
+                            ))}
+                        </div>
+                        <div>
+                            <p>Màu sắc </p>
+                            <div>
+                                
+                            </div>
+                        </div>
+                        <div className='khoibtn'>
+                            <button type='button' onClick={btnthemgiohang} className='btnthemgiohang'><img src="/shopping-cart-add.png" alt="" className='iconthemgiohang'/>Thêm Vào Giỏ Hàng</button>
+                            <button type='button' onClick={muangay} className='btnmuangay'>Mua Ngay</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -152,7 +207,7 @@ function Product_detail() {
             <div className='thongsokythuat'>
                 <h1>THÔNG SỐ KỸ THUẬT</h1>
                 {
-                    thongso.map(item=>(
+                    thongso.map(item => (
                         <div className='thongso_container'>
                             <div className='thong_so_item'><span className='tieude_thongso'>Màn hình:</span><p> {item.man_hinh}</p></div>
                             <br />
@@ -196,7 +251,7 @@ function Product_detail() {
                                 <div className='uname_time'>
                                     <h1>{item.username}</h1>
                                     <h1 className="star">{"⭐".repeat(Number(item.star))}</h1>
-                                    
+
                                 </div>
                             </Link>
                             <div className='inforeview'>
