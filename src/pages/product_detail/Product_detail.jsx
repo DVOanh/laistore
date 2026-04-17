@@ -20,7 +20,7 @@ function Product_detail() {
     const location = useLocation();
     const query = new URLSearchParams(location.search);
     const variant_id = query.get("variantId");
-    const [selectedVariant, setSelectedVariant] = useState(variant_id);
+    const [selectedVariant, setSelectedVariant] = useState(Number(variant_id));
 
     // const [slgh, setSlgh] = useState(0);
     // const decode = jwtDecode(token);
@@ -37,11 +37,11 @@ function Product_detail() {
 
     function muangay() {
         const data = {
-            product_variant_id: selectedVariantData.id,
+            product_variant_id: selectedVariantData?.id,
             soluong: soluong,
             image_url: product.image_url,
             product_name: product.product_name,
-            price: selectedVariantData.price
+            price: selectedVariantData?.price
         }
         nav(`/checkout/${selectedVariantData.id}`, { state: data });
     }
@@ -96,9 +96,10 @@ function Product_detail() {
 
     }, [id]);
 
-    const selectedVariantData = thongtinmay.find(
-        v => v.id === selectedVariant
+    const selectedVariantData = thongtinmay?.find(
+        v => v.id === Number(selectedVariant)
     );
+    
     useEffect(() => {
         fetch(`https://backend-viv4.onrender.com/variant/${id}`)
             .then(res => {

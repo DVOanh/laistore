@@ -1,4 +1,4 @@
-.cartcontainer{
+.cartcontainer {
     margin: 20px auto;
     width: 80%;
     gap: 15px;
@@ -7,108 +7,190 @@
 
 }
 
-.cart_title{
-    position: sticky;
-    top: 80px;
+.cart_title {
+
     background-color: white;
     padding: 20px;
-    box-shadow: 0 1px 1px  rgb(213, 213, 213);
+    box-shadow: 0 1px 1px rgb(213, 213, 213);
     display: grid;
     grid-template-columns: 3fr 1fr 1fr 1fr 1fr 1fr;
     gap: 10px;
     color: rgb(0, 0, 0);
 }
 
-.cart_title h1{
+.cart_title h1 {
     font-size: 14px;
     font-weight: 100;
+    color: gray;
 }
 
 .cart_title h1:nth-child(2),
 .cart_title h1:nth-child(3),
 .cart_title h1:nth-child(4),
 .cart_title h1:nth-child(6),
-.cart_title h1:nth-child(5){
+.cart_title h1:nth-child(5) {
     display: flex;
     justify-content: center;
 }
 
-.cartItem > *:not(:first-child){
+
+.cartItem>*:not(:first-child) {
     display: flex;
     justify-content: center;
 }
 
-.cart_sp{
+.cart_sp {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-.thanhtien{
+.thanhtien {
     color: orangered;
 }
 
-.btnxoacart{
-     background-color: transparent;
+.btnxoacart {
+    background-color: transparent;
     border: none;
     color: red;
     cursor: pointer;
     font-size: 14px;
 }
 
-.btnxoacart:hover{
+.btnxoacart:hover {
     text-decoration: underline;
 }
 
-.cart_sl{
+.cart_sl {
     display: flex;
     gap: 0;
 }
 
-.phanloaicart{
+.phanloaicart {
     color: gray;
     font-size: 14px;
 }
 
-.cart_sl button{
+.cart_sl button {
     width: 25px;
     aspect-ratio: 1/1;
     cursor: pointer;
 }
 
-.cart_sl input[type="text"]{
+.cart_sl input[type="text"] {
     width: 60px;
     outline: none;
     display: flex;
     text-align: center;
 }
 
-.cart_sl button, .cart_sl input[type="text"]{
-    border: 1px solid rgb(153, 153, 153);
+.cart_sl button,
+.cart_sl input[type="text"] {
+    border: 1px solid rgb(226, 226, 226);
     font-size: 15px;
     background-color: white;
 }
 
-.cartItem{
+.cartItem {
     background-color: white;
     padding: 20px;
+    font-size: 14px;
     display: grid;
     grid-template-columns: 3fr 1fr 1fr 1fr 1fr 1fr;
     gap: 10px;
     box-sizing: border-box;
     align-items: center;
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 2px;
 }
 
-.tickcheckbox{
+.tickcheckbox {
     border: 1px solid gray;
     width: 18px;
     height: 18px;
-    accent-color: orange;
+    accent-color: rgb(17, 0, 255);
     color: white;
 }
 
+.cart_bottom {
+    display: flex;
+    padding: 15px;
+    background-color: rgb(255, 255, 255);
+    height: 100px;
+    box-shadow: 0 -6px 15px rgb(245, 245, 245);
+    border: 1px solid rgb(235, 235, 235);
+    position: sticky;
+    bottom: 0;
+}
+
+.cartmuahang {
+    width: fit-content;
+    height: fit-content;
+    margin-left: auto;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-top: auto;
+}
+
+.cartmuahang p{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cartmuahang button {
+    background: #ee4d2d;
+    color: white;
+    padding: 12px 40px;
+    border-radius: 6px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.cartmuahang button:hover {
+    opacity: 0.8;
+}
+
+.overlay{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, .4);
+    z-index: 99999;
+    align-items: center;
+}
+
+.chuachonsp{
+    background-color: white;
+    padding: 20px;
+    width: 500px;
+    border-radius: 3px;
+}
+
+.chuachonsp button{
+    width: 100%;
+    margin-top: 100px;
+    padding: 10px;
+    background-color: orangered;
+    color: white;
+    border-radius: 2px;
+    border: 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.chuachonsp button:hover{
+    opacity: 0.8;
+}
+
 @media (max-width: 768px) {
-    .cartcontainer{
+    .cartcontainer {
         width: 100%;
     }
 }

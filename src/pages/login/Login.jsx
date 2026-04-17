@@ -2,7 +2,9 @@ import { useState } from "react";
 import "./login.css";
 import { Link } from "react-router-dom";
 import { useNavigate, useLocation } from 'react-router-dom';
-
+import {
+  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer
+} from "recharts";
 function Login() {
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
