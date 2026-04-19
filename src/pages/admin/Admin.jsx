@@ -17,25 +17,30 @@ function Dashboard() {
             .then(data => console.log(data));
     }, []);
 
+    useEffect(() => {
+        document.title = "Admin Dashboard - Lai Store";
+    }, []);
 
     return (
 
         <div className="admin_container">
             <div className={`dashboard ${thunho ? "thunho" : ""}`}>
                 <div className="dashboard_title">
-                    <Link to={'/admin/dashboard'} className={`link_logo_admin ${thunho ? "anlogo" : ""}`}><img src="/logo_laistore.png" alt="" style={{width: '40px'}} className="logo_admin"/></Link>
-                    <img src="/sidebar.png" alt="" className="sidebar" onClick={()=>setThunho(!thunho)}/>
+                    <Link to={'/admin/dashboard'} className={`link_logo_admin ${thunho ? "anlogo" : ""}`}><img src="/logo_laistore.png" alt="" style={{ width: '40px' }} className="logo_admin" /></Link>
+                    <img src="/sidebar.png" alt="" className="sidebar" onClick={() => setThunho(!thunho)} />
                 </div>
                 <ul className={`dashboard_item_list ${thunho ? "an" : ""}`}>
-                    <li><NavLink to="/admin/dashboard" className={({ isActive }) => isActive ? "dashboard_item active" : "dashboard_item"} end>Trang chủ</NavLink></li>
-                    <li><NavLink to="/admin/dashboard/products" className={({ isActive }) => isActive ? "dashboard_item active" : "dashboard_item"}>Quản lý sản phẩm</NavLink></li>
-                    <li><NavLink to="/admin/dashboard/orders" className={({ isActive }) => isActive ? "dashboard_item active" : "dashboard_item"}>Quản lý đơn hàng</NavLink></li>
-                    <li><NavLink to="/admin/dashboard/users" className={({ isActive }) => isActive ? "dashboard_item active" : "dashboard_item"}>Quản lý người dùng</NavLink></li>
+                    <li><NavLink to="/admin/dashboard" className={({ isActive }) => isActive ? "dashboard_item active" : "dashboard_item"} end>🏠 Trang chủ</NavLink></li>
+                    <li><NavLink to="/admin/dashboard/products" className={({ isActive }) => isActive ? "dashboard_item active" : "dashboard_item"}>📱 Quản lý sản phẩm</NavLink></li>
+                    <li><NavLink to="/admin/dashboard/orders" className={({ isActive }) => isActive ? "dashboard_item active" : "dashboard_item"}>🛒 Quản lý đơn hàng</NavLink></li>
+                    <li><NavLink to="/admin/dashboard/users" className={({ isActive }) => isActive ? "dashboard_item active" : "dashboard_item"}>👥 Quản lý người dùng</NavLink></li>
+                    <li><NavLink to="/admin/dashboard/setting" className={({ isActive }) => isActive ? "dashboard_item active" : "dashboard_item"}>⚙️ Setting</NavLink></li>
+                    <li><NavLink to="/admin/dashboard/dangxuat" className={({ isActive }) => isActive ? "dashboard_item active" : "dashboard_item"}>⚙️ Đăng xuất</NavLink></li>
                 </ul>
             </div>
             <div className="admin_main">
                 <HeaderAdmin />
-                <Outlet />
+                <div className="admin_main_item"><Outlet /></div>
             </div>
         </div>
     );

@@ -14,33 +14,198 @@ ul{
     min-height: 100vh;
 }
 
+.dashboard_i {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(220px, 1fr));
+    gap: 24px;
+    padding: 20px;
+}
+
+/*tRANG ORDER*/
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.order-table th {
+    background: #f5f7fa;
+    text-align: left;
+    padding: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+}
+
+.order-table td {
+    padding: 12px;
+    border-top: 1px solid #eee;
+    font-size: 14px;
+    color: #444;
+}
+
+.order-table tr:hover {
+    background: #f9fbfd;
+    transition: 0.2s;
+}
+
+.order-code {
+    font-weight: 600;
+    color: #006eff;
+}
+
+.order-total {
+    font-weight: 600;
+    color: #28a745;
+}
+
+.status {
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* Chờ xác nhận */
+.status-6 {
+    background: #fff3cd;
+    color: #856404;
+}
+
+/* Đã xác nhận */
+.status-7 {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+/* Đang giao hàng */
+.status-8 {
+    background: #cce5ff;
+    color: #004085;
+}
+
+/* Hoàn thành */
+.status-9 {
+    background: #d4edda;
+    color: #155724;
+}
+
+/* Đã hủy */
+.status-10 {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Card tổng quan */
+.card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 20px 22px;
+    
+    font-size: 14px;
+    font-weight: 500;
+    color: #2c2c2c;
+
+    border: 1px solid #eaeaea;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+
+    position: relative;
+    overflow: hidden;
+
+    transition: all 0.25s ease;
+}
+
+button {
+    padding: 6px 10px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-view {
+    background: #17a2b8;
+    color: white;
+}
+
+.btn-update {
+    background: #ffc107;
+}
+
+.btn-delete {
+    background: #dc3545;
+    color: white;
+}
+
+/* Hover nhẹ cho cảm giác “xịn” */
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.modalstatus{
+    background-color: white;
+}
+
+/* Thanh nhấn bên trái */
+.card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: #333;
+    opacity: 0.8;
+}
+
+/* Số liệu nổi bật */
+.card span {
+    display: block;
+    margin-top: 10px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #000;
+}
+
 .dashboard_item{
     background-color: rgb(246, 246, 246);
     text-decoration: none;
     display: block;
     width: 100%;
+    box-sizing: border-box;
     color: black;
-    padding: 15px 10px;
-    text-transform: uppercase;
+    padding: 10px;
+    border-radius: 10px;
     transition: background-color 0.3s ease;
     border-bottom: 1px solid rgb(240, 240, 240);
+    font-size: 14px;
+    margin-top: 10px;
+    font-weight: 400;
 }
 
 .dashboard_item:hover{
-    background-color: #e6f7ff;
+    background-color: #efefef;
 }
 
 .dashboard_item.active{
-    background-color: rgb(0, 225, 255);
-    color: white;
+    background-color: #dce3e5;
+    color: rgb(0, 0, 0);
     border-bottom: 0;
-    border-left: 4px solid #007bff;
 }
 
 .dashboard{
     position: sticky;
     left: 0;
+    background-color: rgb(249, 250, 251);
+    padding: 10px;
     top: 0;
+    
     width: 250px;
     background-color: rgb(246, 246, 246);
     height: 100%;
@@ -99,6 +264,10 @@ ul{
     background-color: white;
 }
 
+.admin_main_item{
+    padding: 25px;
+}
+
 .header_admin{
     position: sticky;
     top:0;
@@ -117,19 +286,21 @@ ul{
     border-collapse: separate;
     border-spacing: 0px;
     width: 100%;
+    font-size: 14px;
+    font-weight: 400;
 }
 
 .product_table td, .product_table th{
-    border: 1px solid rgb(221, 240, 255);
+    border: 1px solid rgb(218, 218, 218);
     text-align: center;
 }
 
 .product_table th{
-    padding: 15px 5px;
+    padding:  5px;
     position: sticky;
     top: 60px;
-    background-color: rgb(0, 225, 255);
-    color: rgb(255, 255, 255);
+    background-color: rgb(245, 245, 245);
+    color: rgb(0, 0, 0);
   
 }
 
