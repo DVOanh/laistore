@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import {Link} from "react-router-dom";
 
 function OrderAdmin() {
     const [orders, setOrders] = useState([]);
@@ -56,12 +57,12 @@ function OrderAdmin() {
                                 <td>{item.hoten}</td>
                                 <td>{item.slitem}</td>
                                 <td>
-                                    <span className={`status status-${item.status_id}`}>
+                                    <span className={`status_admin status_admin-${item.status_id}`}>
                                         {item.status_name}
                                     </span>
                                 </td>
                                 <td>
-                                    <button className="btn-view">Xem</button>
+                                    <Link className="btn-view" to={'order_items'}>Xem</Link>
                                     {item.status_id !== 9 && item.status_id !== 10 && (
                                         <>
                                             <button

@@ -33,7 +33,7 @@ function Product() {
             <Link to={`/chitietsanpham/${item.product_id}?variantId=${item.variant_id}`} className='product_item' key={item.product_id}>
               <img src={`/${item.image_url}`} />
               <h3 className='product_name'>{item.product_name}</h3>
-              <p className='price'>{Number(item.price).toLocaleString('vi-VN')} đ</p>
+              <p className='price'>{Number(item.price).toLocaleString('vi-VN')}₫</p>
               <p className='daban'>Đã bán {item.total_sold}</p>
             </Link>
           ))

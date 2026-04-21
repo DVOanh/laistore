@@ -63,7 +63,7 @@ ul{
     color: #28a745;
 }
 
-.status {
+.status_admin {
     padding: 6px 10px;
     border-radius: 20px;
     font-size: 12px;
@@ -72,31 +72,31 @@ ul{
 }
 
 /* Chờ xác nhận */
-.status-6 {
+.status_admin-6 {
     background: #fff3cd;
     color: #856404;
 }
 
 /* Đã xác nhận */
-.status-7 {
+.status_admin-7 {
     background: #d1ecf1;
     color: #0c5460;
 }
 
 /* Đang giao hàng */
-.status-8 {
+.status_admin-8 {
     background: #cce5ff;
     color: #004085;
 }
 
 /* Hoàn thành */
-.status-9 {
+.status_admin-9 {
     background: #d4edda;
     color: #155724;
 }
 
 /* Đã hủy */
-.status-10 {
+.status_admin-10 {
     background: #f8d7da;
     color: #721c24;
 }
@@ -118,14 +118,6 @@ ul{
     overflow: hidden;
 
     transition: all 0.25s ease;
-}
-
-button {
-    padding: 6px 10px;
-    margin-right: 5px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
 }
 
 .btn-view {
@@ -489,7 +481,7 @@ button {
     background: #43a047;
 }
 
-/*css cho nut sua va xoa*/
+/*
 .action_btn{
     display: flex;
     gap: 8px;
@@ -506,7 +498,6 @@ button {
     transition: 0.2s;
 }
 
-/* nút sửa */
 .btn_edit{
     background: #2196f3;
     color: white;
@@ -516,7 +507,6 @@ button {
     background: #1976d2;
 }
 
-/* nút xóa */
 .btn_delete{
     margin-left: 10px;
     background: #f44336;
@@ -527,6 +517,7 @@ button {
     background: #d32f2f;
 }
 
+*/
 .modal_container{
     position: fixed;
     width: 100%;

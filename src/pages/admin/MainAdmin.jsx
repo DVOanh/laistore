@@ -4,6 +4,8 @@ function MainAdmin() {
 
     const [tongdoanhthu, setTongdoanhthu] = useState(null);
     const [tongnguoidung, setTongnguoidung] = useState(null);
+    const [tongdonhang, setTongdonhang] = useState(null);
+    const [tongdaban, setTongdaban] = useState(null);
 
     useEffect(() => {
         fetch('https://backend-viv4.onrender.com/admin/tongdoanhthu')
@@ -19,7 +21,23 @@ function MainAdmin() {
             .then(data => {
                 setTongnguoidung(data[0]);
             })
-    })
+    }, []);
+
+    useEffect(()=>{
+        fetch('https://backend-viv4.onrender.com/admin/tongdonhang')
+        .then(res => res.json())
+            .then(data => {
+                setTongdonhang(data[0]);
+            })
+    }, []);
+
+    useEffect(()=>{
+        fetch('https://backend-viv4.onrender.com/admin/tongdaban')
+        .then(res => res.json())
+            .then(data => {
+                setTongdaban(data[0]);
+            })
+    }, []);
 
     useEffect(() => {
         document.title = "Admin Dashboard - Lai Store";
@@ -36,7 +54,7 @@ function MainAdmin() {
 
             <div className="card">
                 📦 Tổng đơn hàng:
-                <span>0</span>
+                <span>{Number(tongdonhang?.total_orders || 0)}</span>
             </div>
 
             <div className="card">
@@ -46,7 +64,7 @@ function MainAdmin() {
 
             <div className="card">
                 🛒 Tổng sản phẩm đã bán:
-                <span>0</span>
+                <span>{Number(tongdaban?.tongdaban || 0)}</span>
             </div>
         </div>
     )

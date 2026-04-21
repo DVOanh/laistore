@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import Loading from "../../component/loading/Loading";
 import './cart.css';
+import { useNavigate } from "react-router-dom";
 function Cart() {
     const [spgiohang, setSpgiohang] = useState(null);
-    const [soluongsp, setSoluongsp] = useState();
-
     const [selected, setSelected] = useState([]);
     const token = localStorage.getItem('token');
     const [hienthongbao, setHienthongbao] = useState(false);
+    const navigate = useNavigate();
     const [user] = useState(() => {
         const storedUser = localStorage.getItem('user');
         return storedUser ? JSON.parse(storedUser) : null;
@@ -69,12 +69,36 @@ function Cart() {
             setHienthongbao(true);
         }
         else {
-            alert(`Bạn đã chọn ${selected.length} sản phẩm`);
+            navigate("/checkout", {
+                state: {
+                    type: "cart_muangay",
+                    cartIds: selected
+                }
+            })
         }
     }
 
     function anthongbao() {
         setHienthongbao(false)
+    }
+
+    function tangSoLuong(cart_id, stock) {
+        setSpgiohang(prev =>
+            prev.map(item =>
+                item.cart_id === cart_id && item.stock <= stock
+                    ? { ...item, quantity: item.quantity + 1 }
+                    : item
+            )
+        );
+    }
+    function giamSoLuong(cart_id) {
+        setSpgiohang(prev =>
+            prev.map(item =>
+                item.cart_id === cart_id && item.quantity > 1
+                    ? { ...item, quantity: item.quantity - 1 }
+                    : item
+            )
+        )
     }
 
     return (
@@ -123,9 +147,9 @@ function Cart() {
                         <p className="phanloaicart">Phân loại hàng: <br />RAM: {item.ram} - Storage: {item.storage}</p>
                         <p>{Number(item.price).toLocaleString('vi-VN')}₫</p>
                         <div className="cart_sl">
-                            <button>-</button>
-                            <input type="text" value={item.quantity} />
-                            <button>+</button>
+                            <button onClick={() => { giamSoLuong(item.cart_id) }}>-</button>
+                            <input type="text" value={item.quantity} readOnly />
+                            <button onClick={() => { tangSoLuong(item.cart_id, item.stock) }}>+</button>
                         </div>
                         <div className="thanhtien">{(Number(item.quantity) * Number(item.price)).toLocaleString('vi-VN')}₫</div>
                         <button className="btnxoacart" onClick={() => deleteCart(Number(item.cart_id))}>Xoá</button>

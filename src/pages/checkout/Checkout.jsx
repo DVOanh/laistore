@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./checkout.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import Loading from "../../component/loading/Loading";
 
 function Checkout() {
     const [name, setName] = useState("");
@@ -8,19 +9,22 @@ function Checkout() {
     const [address, setAddress] = useState("");
     const [pttt, setPttt] = useState("cod");
     const [ghichu, setGhichu] = useState("");
-
+    const [productbycart, setProductbycart] = useState([]);
     const location = useLocation();
+    const cart_data = location.state;
     const navigate = useNavigate();
 
     const storedUser = localStorage.getItem('user');
-    const [user] = useState(()=>{
+    const [user] = useState(() => {
         return storedUser ? JSON.parse(storedUser) : null;
     });
     const product = location.state;
-
-    if(!product){
+    const token = localStorage.getItem("token");
+    if (!product) {
         navigate('/')
     }
+
+
     const tongtien = product.soluong * product.price;
     function dathang(e) {
         e.preventDefault();
@@ -31,7 +35,7 @@ function Checkout() {
         fetch('https://backend-viv4.onrender.com/order/checkout', {
             method: 'POST',
             headers: {
-                'Content-Type':'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 user_id: user.user_id,
@@ -46,29 +50,80 @@ function Checkout() {
                 ghichu: ghichu
             })
         })
-        .then(res=>{
-            return res.json()
-        })
-        .then(data =>{
-            console.log(data);
-            alert('Mua thanh cong');
-            navigate('/order')
-        })
+            .then(res => {
+                return res.json()
+            })
+            .then(data => {
+                console.log(data);
+                alert('Mua thanh cong');
+                navigate('/order')
+            })
     }
 
+    useEffect(() => {
+        if (!cart_data || cart_data.length === 0) return;
+        fetch("https://backend-viv4.onrender.com/cart/product_cart_checkout", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                cartIds: cart_data.cartIds
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                setProductbycart(data);
+                console.log("data checkout:", data);
+            })
+    }, [token, cart_data])
+    !productbycart && (
+        <Loading />
+    )
     return (
 
         <div className="checkoutContainer">
-            
+
             <div className="infoproduct">
-                <h1>Thông tin sản phẩm</h1>
-                
-                <div style={{width: '50%'}}><img src={`/${product.image_url}`} alt="" style={{width: '100%'}}/></div>
-                <p>Tên sản phẩm: {product.product_name}</p>
-                <p>Đơn giá: {Number(product.price).toLocaleString('vi-VN')}</p>
-                <div>Số lượng: {product.soluong}</div>
-                <p>Tổng tiền: {Number(tongtien).toLocaleString('vi-VN')} đ</p>
-                
+                {
+                    cart_data.type === "cart_muangay"
+                        ? <div>
+                            <h1>Thông tin sản phẩm (tổng cộng {productbycart.length} sản phẩm)</h1>
+                            <div className="checkout_title">
+                                <h1>Ảnh sản phẩm</h1>
+                                <h1>Tên sản phẩm</h1>
+                                <h1>Số lượng</h1>
+                                <h1>Giá</h1>
+                            </div>
+                            <div className="product_list_checkout">
+                                {
+                                    productbycart.map(item => (
+                                        <div className="checkout_item">
+                                            <div className="image_checkout">
+                                                <img src={`/${item.image_url}`} alt="" />
+                                            </div>
+                                            <h5 className="name_checkout">{item.product_name}</h5>
+                                            <p>{item.quantity}</p>
+                                            <p className="price_checkout">{Number(item.price).toLocaleString("vi-VN")}₫</p>   
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                        : <div>
+                            <h1>Thông tin sản phẩm</h1>
+
+                            <div style={{ width: '50%' }}><img src={`/${product.image_url}`} alt="" style={{ width: '100%' }} /></div>
+                            <p>Tên sản phẩm: {product.product_name}</p>
+                            <p>Đơn giá: {Number(product.price).toLocaleString('vi-VN')}</p>
+                            <div>Số lượng: {product.soluong}</div>
+                            <p>Tổng tiền: {Number(tongtien).toLocaleString('vi-VN')} đ</p>
+                        </div>
+                }
+
+
+
             </div>
             <div className="form">
                 <form onSubmit={dathang} className="phom">
@@ -136,7 +191,7 @@ function Checkout() {
                                 }}
                             />
                         </div>
-                        
+
                     </div>
                     <div>
                         <label htmlFor="">Ghi chú</label>
@@ -155,7 +210,7 @@ function Checkout() {
                             <span>{Number(tongtien).toLocaleString('vi-VN')}đ</span>
                         </div>
                         <button type="submit" className="btndathang">Đặt Hàng</button>
-                    </div>   
+                    </div>
                 </form>
             </div>
         </div>

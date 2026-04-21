@@ -29,6 +29,7 @@ import Add_product_admin from './pages/admin/component_admin/Add_product_admin';
 import Edit_product_admin from './pages/admin/component_admin/Edit_product_admin';
 import Danhmuc_item from './pages/danhmuc_item/Danhmuc_item';
 import Chitietdonhang from './pages/chitietdonhang/Chitietdonhang';
+import Order_items from './pages/admin/component_admin/Order_items';
 function App() {
   return (
     <BrowserRouter>
@@ -53,6 +54,11 @@ function App() {
               <Cart />
             </ProtectedRouter>
           } />
+          <Route path='/checkout' element={
+            <ProtectedRouter>
+              <Checkout />
+            </ProtectedRouter>
+          }/>
           <Route path='/checkout/:id' element={
             <ProtectedRouter>
               <Checkout />
@@ -69,7 +75,9 @@ function App() {
               <Route path='add' element={<Add_product_admin/>}/>
               <Route path='edit/:product_id' element={<Edit_product_admin/>}/>
             </Route>
-            <Route path='orders' element={<OrderAdmin/>}/>
+            <Route path='orders' element={<OrderAdmin/>}>
+              <Route path='order_items' element={<Order_items/>}/>
+            </Route>
             <Route path='users' element={<UserAdmin/>}/>
           </Route>
         </Route>

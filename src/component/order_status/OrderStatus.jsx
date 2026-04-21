@@ -142,7 +142,10 @@ function OrderStatus() {
                 :
                 !order || order.length === 0 ?
                     (
-                        <h1 className="kocodon">Không có đơn nào cả</h1>
+                        <div className="kocodonhang">
+                            <div className="no_order"><img src="/no_order.jpg" alt=""/></div>
+                            <p>Chưa có đơn hàng</p>
+                        </div>
                     )
                     :
                     order.map((item) => (

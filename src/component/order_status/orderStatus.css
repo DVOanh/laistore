@@ -30,6 +30,29 @@
     border: 1px solid rgb(235, 235, 235);
 }
 
+.kocodonhang{
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 80px);
+}
+
+.kocodonhang p{
+    font-size: 18px;
+}
+
+.no_order{
+    width: 300px;
+    height: auto;
+}
+
+.no_order img{
+    width: 100%;
+}
+
 .kocodon{
     margin: 20px auto 0;
 }
