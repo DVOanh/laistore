@@ -12,6 +12,9 @@ function Checkout() {
     const [productbycart, setProductbycart] = useState([]);
     const location = useLocation();
     const cart_data = location.state;
+    const quantities = cart_data?.soluongsp?.map(item => item.quantity);
+
+    console.log(cart_data)
     const navigate = useNavigate();
 
     const storedUser = localStorage.getItem('user');
@@ -24,40 +27,49 @@ function Checkout() {
         navigate('/')
     }
 
-
     const tongtien = product.soluong * product.price;
+    const tongtienCart = productbycart.reduce((total, item) => {
+    return total + item.price * item.quantity;
+}, 0);
     function dathang(e) {
         e.preventDefault();
         if (!name.trim() || !phone.trim() || !address.trim()) {
             alert("Vui lòng nhập đầy đủ thông tin");
             return;
         }
-        fetch('https://backend-viv4.onrender.com/order/checkout', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                user_id: user.user_id,
-                variant_id: product.product_variant_id,
-                quantity: product.soluong,
-                price: product.price,
-                total: tongtien,
-                hoten: name,
-                phone: phone,
-                address: address,
-                pttt: pttt,
-                ghichu: ghichu
+        if (cart_data.type === "cart_muangay") {
+            alert("Mua hang cua gio hang");
+            return;
+        }
+        else {
+            fetch('https://backend-viv4.onrender.com/order/checkout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user_id: user.user_id,
+                    variant_id: product.product_variant_id,
+                    quantity: product.soluong,
+                    price: product.price,
+                    total: tongtien,
+                    hoten: name,
+                    phone: phone,
+                    address: address,
+                    pttt: pttt,
+                    ghichu: ghichu
+                })
             })
-        })
-            .then(res => {
-                return res.json()
-            })
-            .then(data => {
-                console.log(data);
-                alert('Mua thanh cong');
-                navigate('/order')
-            })
+                .then(res => {
+                    return res.json()
+                })
+                .then(data => {
+                    console.log(data);
+                    alert('Mua thanh cong');
+                    navigate('/order')
+                })
+        }
+
     }
 
     useEffect(() => {
@@ -105,7 +117,7 @@ function Checkout() {
                                             </div>
                                             <h5 className="name_checkout">{item.product_name}</h5>
                                             <p>{item.quantity}</p>
-                                            <p className="price_checkout">{Number(item.price).toLocaleString("vi-VN")}₫</p>   
+                                            <p className="price_checkout">{Number(item.price).toLocaleString("vi-VN")}₫</p>
                                         </div>
                                     ))
                                 }
@@ -113,12 +125,22 @@ function Checkout() {
                         </div>
                         : <div>
                             <h1>Thông tin sản phẩm</h1>
+                            <div className="checkout_title">
+                                <h1>Ảnh sản phẩm</h1>
+                                <h1>Tên sản phẩm</h1>
+                                <h1>Số lượng</h1>
+                                <h1>Giá</h1>
+                            </div>
 
-                            <div style={{ width: '50%' }}><img src={`/${product.image_url}`} alt="" style={{ width: '100%' }} /></div>
-                            <p>Tên sản phẩm: {product.product_name}</p>
-                            <p>Đơn giá: {Number(product.price).toLocaleString('vi-VN')}</p>
-                            <div>Số lượng: {product.soluong}</div>
-                            <p>Tổng tiền: {Number(tongtien).toLocaleString('vi-VN')} đ</p>
+                            <div className="checkout_item">
+                                <div className="image_checkout">
+                                    <img src={`/${product.image_url}`} alt="" />
+                                </div>
+                                <h5 className="name_checkout">Tên sản phẩm: {product.product_name}</h5>
+                                <p>1</p>
+                                <p className="price_checkout">{Number(product.price).toLocaleString('vi-VN')}₫</p>
+                                {/* <p>Tổng tiền: {Number(tongtien).toLocaleString('vi-VN')} đ</p> */}
+                            </div>
                         </div>
                 }
 
@@ -126,92 +148,106 @@ function Checkout() {
 
             </div>
             <div className="form">
-                <form onSubmit={dathang} className="phom">
-                    <h1>Thông tin giao hàng</h1>
-                    <input
-                        type="text"
-                        placeholder="Họ và tên"
-                        value={name}
-                        onChange={(e) => {
-                            setName(e.target.value);
-                        }}
-                    />
-                    <br />
-                    <input
-                        type="text"
-                        placeholder="Số điện thoại"
-                        value={phone}
-                        onChange={(e) => {
-                            setPhone(e.target.value);
-                        }}
-                    />
-                    <br />
-                    <textarea
-                        placeholder="Địa chỉ giao hàng"
-                        value={address}
-                        onChange={(e) => {
-                            setAddress(e.target.value);
-                        }}
-                    ></textarea>
-                    <h1 className="tieudepttt">Phương thức thanh toán</h1>
-                    <div className="khoipttt">
-                        <div>
-                            <label>Thanh toán khi nhận hàng</label>
-                            <input
-                                type="radio"
-                                value={"cod"}
-                                name="pttt"
-                                checked={pttt === "cod"}
-                                onChange={(e) => {
-                                    setPttt(e.target.value);
-                                }}
-                            />
-                        </div>
-                        <div>
-                            <label className="label_pttt">Thanh toán bằng chuyển khoản</label>
-                            <input
-                                type="radio"
-                                value={"bank"}
-                                name="pttt"
-                                checked={pttt === "bank"}
-                                onChange={(e) => {
-                                    setPttt(e.target.value);
-                                }}
-                            />
-                        </div>
-                        <div >
-                            <label>Thanh toán bằng MOMO</label>
-                            <input
-                                type="radio"
-                                value={"momo"}
-                                name="pttt"
-                                checked={pttt === "momo"}
-                                onChange={(e) => {
-                                    setPttt(e.target.value);
-                                }}
-                            />
-                        </div>
-
-                    </div>
-                    <div>
-                        <label htmlFor="">Ghi chú</label>
+                <div className="form_item_checkout">
+                    <form onSubmit={dathang} className="phom">
+                        <h1>Thông tin giao hàng</h1>
+                        <label htmlFor="">Tên người nhận</label>
                         <input
                             type="text"
-                            placeholder="Ghi chú"
-                            value={ghichu}
+                            placeholder="Họ và tên"
+                            value={name}
                             onChange={(e) => {
-                                setGhichu(e.target.value);
+                                setName(e.target.value);
                             }}
                         />
-                    </div>
-                    <div className="khoidathang">
+                        <br />
+                        <br />
+                        <label htmlFor="">Số điện thoại</label>
+                        <input
+                            type="text"
+                            placeholder="Số điện thoại"
+                            value={phone}
+                            onChange={(e) => {
+                                setPhone(e.target.value);
+                            }}
+                        />
+                        <br />
+                        <br />
+                        <label htmlFor="">Địa chỉ</label>
+                        <textarea
+                            placeholder="Địa chỉ giao hàng"
+                            value={address}
+                            onChange={(e) => {
+                                setAddress(e.target.value);
+                            }}
+                        ></textarea>
+                        <br />
+                        <br />
                         <div>
-                            Tổng cộng
-                            <span>{Number(tongtien).toLocaleString('vi-VN')}đ</span>
+                            <label htmlFor="">Ghi chú</label>
+                            <input
+                                type="text"
+                                placeholder="Ghi chú"
+                                value={ghichu}
+                                onChange={(e) => {
+                                    setGhichu(e.target.value);
+                                }}
+                            />
                         </div>
-                        <button type="submit" className="btndathang">Đặt Hàng</button>
+                        <h1 className="tieudepttt">Phương thức thanh toán</h1>
+                        <div className="khoipttt">
+                            <div>
+                                <label>Thanh toán khi nhận hàng</label>
+                                <input
+                                    type="radio"
+                                    value={"cod"}
+                                    name="pttt"
+                                    checked={pttt === "cod"}
+                                    onChange={(e) => {
+                                        setPttt(e.target.value);
+                                    }}
+                                />
+                            </div>
+                            <div>
+                                <label className="label_pttt">Thanh toán bằng chuyển khoản</label>
+                                <input
+                                    type="radio"
+                                    value={"bank"}
+                                    name="pttt"
+                                    checked={pttt === "bank"}
+                                    onChange={(e) => {
+                                        setPttt(e.target.value);
+                                    }}
+                                />
+                            </div>
+                            <div >
+                                <label>Thanh toán bằng MOMO</label>
+                                <input
+                                    type="radio"
+                                    value={"momo"}
+                                    name="pttt"
+                                    checked={pttt === "momo"}
+                                    onChange={(e) => {
+                                        setPttt(e.target.value);
+                                    }}
+                                />
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
+                <div className="khoidathang">
+                    <div className="khoitongtien">
+                        Tổng tiền:
+                        {
+                            cart_data.type === "cart_muangay"
+                                ? <span> {Number(tongtienCart).toLocaleString("vi-VN")}₫</span>
+                                : <span> {Number(product.price).toLocaleString("vi-VN")}₫</span>
+                        }
                     </div>
-                </form>
+                    <button type="submit" className="btndathang" onClick={dathang}>Đặt Hàng</button>
+                </div>
             </div>
         </div>
     );

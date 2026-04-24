@@ -72,7 +72,10 @@ function Cart() {
             navigate("/checkout", {
                 state: {
                     type: "cart_muangay",
-                    cartIds: selected
+                    cartIds: selected,
+                    soluongsp: spgiohang.map(item=>({
+                        quantity: item.quantity
+                    }))
                 }
             })
         }

@@ -23,6 +23,7 @@
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  font-size: 16px;
 }
 
 .login-form button {
@@ -31,6 +32,7 @@
   color: white;
   border: none;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .chuacotk{
