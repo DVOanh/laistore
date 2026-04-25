@@ -237,6 +237,7 @@ header {
         min-width: 40px;
         padding: 5px;
         box-sizing: border-box;
+        background-color: white;
     }
 
     .head_container{
@@ -257,9 +258,12 @@ header {
     }
 
     .cartcount {
-        top: -7px;
-        right: -10px;
+        top: -5px;
+        right: -8px;
+        padding: 2px 6px;
+        text-align: center;
         font-size: 10px;
+        border: 1px solid #ff4500;
     }
 
     .logo_link img {
