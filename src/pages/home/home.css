@@ -7,7 +7,8 @@ body {
     background-color: rgb(245, 245, 245);
 }
 
-input[type="text"], input[type="number"]{
+input[type="text"],
+input[type="number"] {
     font-size: 16px;
 }
 
@@ -34,27 +35,27 @@ input[type="text"], input[type="number"]{
     width: 100%;
 }
 
-.tieude_danhmuc{
+.tieude_danhmuc {
     font-weight: 100;
     font-size: 20px;
     padding: 20px;
     color: rgb(75, 75, 75);
 }
 
-.danhmuccontainer{
+.danhmuccontainer {
     margin: 20px auto;
     width: 80%;
     background-color: white;
 }
 
-.danhmuclist{
+.danhmuclist {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     width: 100%;
-    
+
 }
 
-.danhmucitem{
+.danhmucitem {
     width: 100%;
     aspect-ratio: 1/1;
     display: flex;
@@ -66,12 +67,12 @@ input[type="text"], input[type="number"]{
     text-decoration: none;
 }
 
-.danhmucitem:hover{
+.danhmucitem:hover {
     border: 1px solid rgb(224, 224, 224);
     box-shadow: 0 1px 20px rgb(240, 240, 240);
 }
 
-.tendanhmuc{
+.tendanhmuc {
     width: 100%;
     justify-content: center;
     text-align: center;
@@ -80,7 +81,7 @@ input[type="text"], input[type="number"]{
     padding: 0 10px;
 }
 
-.anhdanhmuc{
+.anhdanhmuc {
     margin-top: 10px;
     width: 50px;
     height: 50px;
@@ -91,10 +92,11 @@ input[type="text"], input[type="number"]{
     align-items: center;
 }
 
-.anhdanhmuc img{
+.anhdanhmuc img {
     width: 30px;
     filter: invert(28%) sepia(90%) saturate(1400%) hue-rotate(210deg) brightness(85%) contrast(100%);
 }
+
 
 @media only screen and (max-width: 719px) {
     .container {
@@ -102,10 +104,10 @@ input[type="text"], input[type="number"]{
 
     }
 
-    .banner{
+    .banner {
         background-color: rgba(255, 255, 255, 0);
     }
-    
+
     .banner_container {
         width: 96%;
         margin: 7px auto;
@@ -123,29 +125,30 @@ input[type="text"], input[type="number"]{
         padding: 0;
     }
 
-    .danhmuccontainer{
+    .danhmuccontainer {
         width: 100%;
         margin: 10px auto;
     }
-    .danhmuclist{
+
+    .danhmuclist {
         display: flex;
         flex-wrap: nowrap;
         overflow-x: auto;
         scrollbar-width: none;
     }
 
-    .danhmucitem{
+    .danhmucitem {
         width: 100px !important;
         flex: 0 0 auto;
         border: 1px solid rgb(255, 255, 255);
     }
 
-    .banner_danhmuc{
+    .banner_danhmuc {
         display: flex;
         flex-direction: column-reverse;
     }
 
-    .anhdanhmuc{
+    .anhdanhmuc {
         width: 40px;
         height: 40px;
         border-radius: 10px;
@@ -154,11 +157,11 @@ input[type="text"], input[type="number"]{
         padding: 0px;
     }
 
-    .anhdanhmuc img{
+    .anhdanhmuc img {
         width: 20px;
     }
 
-    .tieude_danhmuc{
+    .tieude_danhmuc {
         display: none;
     }
 }

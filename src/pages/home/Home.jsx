@@ -12,6 +12,7 @@ function Home() {
             .then(res => res.json())
             .then(data => setDanhmuc(data));
     }, []);
+    
     return (
         <div className="container">
             <div className="banner_danhmuc">
@@ -38,6 +39,7 @@ function Home() {
                 </div>
             </div>
             <Product />
+            
         </div>
     )
 }

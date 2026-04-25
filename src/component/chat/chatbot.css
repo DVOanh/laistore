@@ -1,0 +1,140 @@
+.chatbot_parent {
+    width: 50px;
+    position: fixed;
+    z-index: 999;
+    right: 20px;
+    bottom: 20px;
+}
+
+.chatbot_child {
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+/* vòng lan ra */
+.ping {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(0, 200, 255, 0.4);
+    animation: ping 1.5s infinite;
+    z-index: 1;
+}
+
+@keyframes ping {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+.logochatbot {
+    width: 30px;
+}
+
+.cb{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.chatbox {
+    position: fixed;
+    right: 20px;
+    bottom: 0px;
+    width: 300px;
+    height: 450px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    z-index: 1000;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background: #00bcd4;
+    color: white;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.closechatbot {
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255, 0, 0, 0);
+    border: 0;
+    cursor: pointer;
+    filter: invert(100%) sepia(93%) saturate(28%) hue-rotate(48deg) brightness(106%) contrast(109%);
+}
+
+.closechatbot img {
+    width: 100%;
+    height: 100%;
+}
+
+/* nội dung */
+.chat-content {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* message */
+.message {
+  padding: 8px 12px;
+  border-radius: 10px;
+  max-width: 70%;
+}
+
+/* bot */
+.message.bot {
+  background: #eee;
+  align-self: flex-start;
+}
+
+/* user */
+.message.user {
+  background: #00bcd4;
+  color: white;
+  align-self: flex-end;
+}
+
+/* input */
+.chat-input {
+  display: flex;
+  border-top: 1px solid #ddd;
+
+  
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-bottom-left-radius: 10px;
+}
+
+.chat-input button {
+  padding: 10px;
+  border: none;
+  background: #00bcd4;
+  color: white;
+  cursor: pointer;
+  
+}
