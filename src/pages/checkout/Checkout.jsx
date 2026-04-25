@@ -12,7 +12,6 @@ function Checkout() {
     const [productbycart, setProductbycart] = useState([]);
     const location = useLocation();
     const cart_data = location.state;
-    const quantities = cart_data?.soluongsp?.map(item => item.quantity);
 
     console.log(cart_data)
     const navigate = useNavigate();
@@ -28,9 +27,11 @@ function Checkout() {
     }
 
     const tongtien = product.soluong * product.price;
-    const tongtienCart = productbycart.reduce((total, item) => {
-    return total + item.price * item.quantity;
-}, 0);
+    
+    const tongtienCart = Array.isArray(productbycart)
+        ? productbycart.reduce((total, item) => total + item.price * item.quantity, 0)
+        : 0;
+
     function dathang(e) {
         e.preventDefault();
         if (!name.trim() || !phone.trim() || !address.trim()) {
@@ -90,9 +91,6 @@ function Checkout() {
                 console.log("data checkout:", data);
             })
     }, [token, cart_data])
-    !productbycart && (
-        <Loading />
-    )
     return (
 
         <div className="checkoutContainer">
@@ -113,7 +111,7 @@ function Checkout() {
                                     productbycart.map(item => (
                                         <div className="checkout_item">
                                             <div className="image_checkout">
-                                                <img src={`/${item.image_url}`} alt="" />
+                                                <img src={`/${item.image_url}`} alt="" className="img_checkout" />
                                             </div>
                                             <h5 className="name_checkout">{item.product_name}</h5>
                                             <p>{item.quantity}</p>
@@ -124,7 +122,7 @@ function Checkout() {
                             </div>
                         </div>
                         : <div>
-                            <h1>Thông tin sản phẩm</h1>
+                            <h1>Thông tin sản phẩm (tổng cộng 1 sản phẩm)</h1>
                             <div className="checkout_title">
                                 <h1>Ảnh sản phẩm</h1>
                                 <h1>Tên sản phẩm</h1>
@@ -134,7 +132,7 @@ function Checkout() {
 
                             <div className="checkout_item">
                                 <div className="image_checkout">
-                                    <img src={`/${product.image_url}`} alt="" />
+                                    <img src={`/${product.image_url}`} alt="" className="img_checkout" />
                                 </div>
                                 <h5 className="name_checkout">Tên sản phẩm: {product.product_name}</h5>
                                 <p>1</p>

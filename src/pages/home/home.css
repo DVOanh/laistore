@@ -92,6 +92,8 @@ input[type="text"], input[type="number"]{
 }
 
 .anhdanhmuc img{
+    width: 30px;
+    height: fit-content;
     filter: invert(28%) sepia(90%) saturate(1400%) hue-rotate(210deg) brightness(85%) contrast(100%);
 }
 
@@ -123,15 +125,41 @@ input[type="text"], input[type="number"]{
     }
 
     .danhmuccontainer{
-        width: 97%;
+        width: 100%;
         margin: 10px auto;
     }
     .danhmuclist{
-        grid-template-columns: repeat(4, 1fr);
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .danhmucitem{
+        width: 100px !important;
+        flex: 0 0 auto;
+        border: 1px solid rgb(255, 255, 255);
     }
 
     .banner_danhmuc{
         display: flex;
         flex-direction: column-reverse;
+    }
+
+    .anhdanhmuc{
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        border: 1px solid rgb(221, 221, 221);
+        background-color: white;
+        padding: 0px;
+    }
+
+    .anhdanhmuc img{
+        width: 20px;
+    }
+
+    .tieude_danhmuc{
+        display: none;
     }
 }

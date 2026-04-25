@@ -45,7 +45,7 @@ function Header() {
             <div className='head_container'>
                 <div style={{display: 'flex', alignItems: 'center'}}>
                     <Link to={'/'} className='logo_link'>
-                        <img src="/logo_laistore.png" alt="" style={{ width: '60px' }} />
+                        <img src="/logo_laistore.png" alt=""  />
                         <h1>Lai Store</h1>
                     </Link>
 

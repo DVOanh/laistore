@@ -27,7 +27,7 @@ function Home() {
                                     <Link to={`/categories/${item.danhmuc_id}`} className="danhmucitem" >
                                         
                                         <div className="anhdanhmuc">
-                                            <img src={`/${item.image_url}`} alt="" width={"30px"}/>
+                                            <img src={`/${item.image_url}`} alt=""/>
                                         </div>
                                         
                                         <div className="tendanhmuc">{item.name}</div>

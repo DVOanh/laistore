@@ -101,7 +101,13 @@
         padding: 7px;
     }
 
+    .tieudesp{
+        position: static !important;
+        top: 0;
+    }
+
     .tieudesp p{
-        margin: 15px;
+        margin: 10px;
+
     }
 }

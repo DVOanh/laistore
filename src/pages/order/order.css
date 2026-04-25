@@ -47,9 +47,10 @@
     }
     .status_list{
         width: auto;
-        scrollbar-width: auto;
+        scrollbar-width: none;
         display: flex;
         overflow-x: auto;
+
     }
     .status{
         white-space: nowrap;
