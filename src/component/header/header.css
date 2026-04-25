@@ -234,15 +234,22 @@ header {
     }
 
     .input_search {
-        min-width: 50px;
+        min-width: 40px;
+        padding: 5px;
+        box-sizing: border-box;
     }
 
     .head_container{
-        gap: 10px;
+        gap: 5px;
     }
 
     .hihi h5 {
         display: none;
+    }
+
+    .user img{
+        width: 25px;
+        height: 25px;
     }
 
     .iconcart img {

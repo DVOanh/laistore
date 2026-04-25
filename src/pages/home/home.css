@@ -93,7 +93,6 @@ input[type="text"], input[type="number"]{
 
 .anhdanhmuc img{
     width: 30px;
-    height: fit-content;
     filter: invert(28%) sepia(90%) saturate(1400%) hue-rotate(210deg) brightness(85%) contrast(100%);
 }
 
