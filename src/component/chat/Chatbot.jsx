@@ -3,6 +3,8 @@ import "./chatbot.css"
 function ChatBot() {
     const [openChatbot, setOpenchatbot] = useState(false);
     const [openiconchatbot, setopeniconchatbot] = useState(true);
+    const [loinhan, setLoinhan] = useState("");
+    const [chat, setChat] = useState([]);
     function openchatbot() {
         setOpenchatbot(true);
         setopeniconchatbot(false)
@@ -11,11 +13,38 @@ function ChatBot() {
         setOpenchatbot(false)
         setopeniconchatbot(true)
     }
+
+    const sendChat = async () => {
+        try {
+            const res = await fetch("https://backend-viv4.onrender.com/chatbot", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    message: loinhan
+                }),
+            });
+
+            const data = await res.json();
+            console.log(data)
+            setChat(prev => [...prev, { user: loinhan, bot: data.reply }]);
+            setLoinhan("")
+        }
+        catch (err) {
+            console.error(err);
+            setChat(prev => [
+                ...prev,
+                { user: loinhan, bot: "⚠️ Lỗi server hoặc mạng" }
+            ]);
+        }
+    }
+
     return (
         <>
             {
                 openiconchatbot && (<div className="chatbot_parent" onClick={openchatbot}>
-                    <div class="ping"></div>
+                    <div className="ping"></div>
                     <img src="/chatbot.png" alt="" className="chatbot_child" />
                 </div>
                 )}
@@ -28,33 +57,18 @@ function ChatBot() {
                             <button onClick={closechatbot} className="closechatbot"><img src="/close.png" alt="" /></button>
                         </div>
                         <div className="chat-content">
-                            <div className="message bot">
-                                Xin chào! Tôi có thể giúp gì cho bạn?
-                            </div>
-
-                            <div className="message user">
-                                Shop còn iPhone không?
-                            </div>
-                            <div className="message bot">
-                                Xin chào! Tôi có thể giúp gì cho bạn?
-                            </div>
-
-                            <div className="message user">
-                                Shop còn iPhone không?
-                            </div>
-                            <div className="message bot">
-                                Xin chào! Tôi có thể giúp gì cho bạn?
-                            </div>
-
-                            <div className="message user">
-                                Shop còn iPhone không?
-                            </div>
+                            {chat.map((c, i) => (
+                                <div key={i}>
+                                    <div className="message user">{c.user}</div>
+                                    <div className="message bot">{c.bot}</div>
+                                </div>
+                            ))}
                         </div>
 
                         {/* INPUT */}
                         <div className="chat-input">
-                            <input placeholder="Nhập tin nhắn..." />
-                            <button>Gửi</button>
+                            <input placeholder="Nhập tin nhắn..." value={loinhan} onChange={e => setLoinhan(e.target.value)} />
+                            <button onClick={sendChat}>Gửi</button>
                         </div>
                     </div>
                 )

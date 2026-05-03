@@ -87,7 +87,7 @@
 /* nội dung */
 .chat-content {
   flex: 1;
-  padding: 10px;
+  padding: 10px 10px 0 10px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -99,27 +99,30 @@
   padding: 8px 12px;
   border-radius: 10px;
   max-width: 70%;
+    width: fit-content;
 }
 
 /* bot */
 .message.bot {
   background: #eee;
-  align-self: flex-start;
+  margin-right: auto;
+
+  margin-top: 10px;
 }
 
 /* user */
 .message.user {
-  background: #00bcd4;
+  background: #ff0000;
   color: white;
-  align-self: flex-end;
+  height: auto;
+  margin-left: auto;
 }
 
 /* input */
 .chat-input {
   display: flex;
   border-top: 1px solid #ddd;
-
-  
+    
 }
 
 .chat-input input {
@@ -128,6 +131,7 @@
   border: none;
   outline: none;
   border-bottom-left-radius: 10px;
+  font-size: 16px;
 }
 
 .chat-input button {

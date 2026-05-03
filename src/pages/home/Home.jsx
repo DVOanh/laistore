@@ -25,7 +25,7 @@ function Home() {
                         
                             {
                                 danhmuc.map(item=>(
-                                    <Link to={`/categories/${item.danhmuc_id}`} className="danhmucitem" >
+                                    <Link to={`/categories/${item.danhmuc_id}`} className="danhmucitem">
                                         
                                         <div className="anhdanhmuc">
                                             <img src={`/${item.image_url}`} alt=""/>
