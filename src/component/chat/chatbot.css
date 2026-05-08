@@ -39,7 +39,7 @@
     width: 30px;
 }
 
-.cb{
+.cb {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -48,7 +48,7 @@
 .chatbox {
     position: fixed;
     right: 20px;
-    bottom: 0px;
+    bottom: 10px;
     width: 300px;
     height: 450px;
     border: 1px solid #ccc;
@@ -86,59 +86,69 @@
 
 /* nội dung */
 .chat-content {
-  flex: 1;
-  padding: 10px 10px 0 10px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scrollbar-width: none;
 }
 
 /* message */
 .message {
-  padding: 8px 12px;
-  border-radius: 10px;
-  max-width: 70%;
+    padding: 8px 12px;
+    border-radius: 10px;
+    max-width: 70%;
     width: fit-content;
 }
 
 /* bot */
 .message.bot {
-  background: #eee;
-  margin-right: auto;
+    background: #eee;
+    margin-right: auto;
 
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 /* user */
 .message.user {
-  background: #ff0000;
-  color: white;
-  height: auto;
-  margin-left: auto;
+    background: #ff0000;
+    color: white;
+    height: auto;
+    margin-left: auto;
 }
 
 /* input */
 .chat-input {
-  display: flex;
-  border-top: 1px solid #ddd;
-    
+    display: flex;
+    border-top: 1px solid #ddd;
+
 }
 
 .chat-input input {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  outline: none;
-  border-bottom-left-radius: 10px;
-  font-size: 16px;
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-bottom-left-radius: 10px;
+    font-size: 16px;
 }
 
 .chat-input button {
-  padding: 10px;
-  border: none;
-  background: #00bcd4;
-  color: white;
-  cursor: pointer;
-  
+    padding: 10px;
+    border: none;
+    background: #00bcd4;
+    color: white;
+    cursor: pointer;
+
+}
+
+@media (max-width: 600px) {
+    .chatbox {
+        left: 0;
+        top: 0;
+        height: 100vh;
+        width: 100%;
+    }
 }

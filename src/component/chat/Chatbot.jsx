@@ -1,10 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect, useRef} from "react";
 import "./chatbot.css"
 function ChatBot() {
     const [openChatbot, setOpenchatbot] = useState(false);
     const [openiconchatbot, setopeniconchatbot] = useState(true);
     const [loinhan, setLoinhan] = useState("");
-    const [chat, setChat] = useState([]);
+    const [chat, setChat] = useState([
+        {
+            user: null,
+            bot: "Xin chào! Tôi sẵn sàng giúp đỡ bạn. Bạn cần gì?"
+        }
+    ]);
+    const endRef = useRef(null);
+
+    // Hàm scroll
+  const scrollToBottom = () => {
+    endRef.current?.scrollIntoView({
+      behavior: "smooth"
+    });
+  };
+
+  // Khi chat thay đổi
+  useEffect(() => {
+    scrollToBottom();
+  }, [chat]);
     function openchatbot() {
         setOpenchatbot(true);
         setopeniconchatbot(false)
@@ -15,6 +33,7 @@ function ChatBot() {
     }
 
     const sendChat = async () => {
+        if (!loinhan.trim()){return};
         try {
             const res = await fetch("https://backend-viv4.onrender.com/chatbot", {
                 method: "POST",
@@ -28,7 +47,7 @@ function ChatBot() {
 
             const data = await res.json();
             console.log(data)
-            setChat(prev => [...prev, { user: loinhan, bot: data.reply }]);
+            setChat(prev => [...prev, { user: loinhan, bot: data?.reply }]);
             setLoinhan("")
         }
         catch (err) {
@@ -59,8 +78,12 @@ function ChatBot() {
                         <div className="chat-content">
                             {chat.map((c, i) => (
                                 <div key={i}>
-                                    <div className="message user">{c.user}</div>
+                                    {c.user && (
+                                        <div className="message user">{c.user}</div>
+                                    )}
                                     <div className="message bot">{c.bot}</div>
+                                    {/* mốc cuối */}
+        <div ref={endRef}></div>
                                 </div>
                             ))}
                         </div>
