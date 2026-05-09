@@ -63,7 +63,7 @@ function Login() {
 
     return (
         <div className="login-container">
-            <form className="login-form" onSubmit={handleSubmit}>
+            <form className="login-form" onSubmit={handleSubmit} autoComplete="off">
                 <h2>Đăng nhập</h2>
 
                 <input
@@ -72,6 +72,7 @@ function Login() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    autoComplete="off"
                 />
 
                 <input
@@ -80,6 +81,7 @@ function Login() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
+                    autoComplete="new-password"
                 />
 
                 <button type="submit">Đăng nhập</button>

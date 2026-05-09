@@ -103,9 +103,9 @@ function ChatBot() {
                             </div>
                             <p>Hỗ trợ khách hàng</p>
                         </div>
-                        <button onClick={closechatbot} className="closechatbot">
+                        <div onClick={closechatbot} className="closechatbot">
                             <img src="/close.png" alt="" title="Đóng đoạn chat"/>
-                        </button>
+                        </div>
                     </div>
                     <div className="chat-content">
                         {chat.map((c, i) => (

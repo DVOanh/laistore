@@ -101,10 +101,11 @@ function Checkout() {
                         ? <div>
                             <h1>Thông tin sản phẩm (tổng cộng {productbycart.length} sản phẩm)</h1>
                             <div className="checkout_title">
-                                <h1>Ảnh sản phẩm</h1>
-                                <h1>Tên sản phẩm</h1>
+                                <h1>Sản phẩm</h1>
+                                <h1></h1>
                                 <h1>Số lượng</h1>
-                                <h1>Giá</h1>
+                                <h1>Đơn giá</h1>
+                                <h1>Tổng tiền</h1>
                             </div>
                             <div className="product_list_checkout">
                                 {
@@ -116,6 +117,7 @@ function Checkout() {
                                             <h5 className="name_checkout">{item.product_name}</h5>
                                             <p>{item.quantity}</p>
                                             <p className="price_checkout">{Number(item.price).toLocaleString("vi-VN")}₫</p>
+                                            <p className="price_checkout">{Number(item.price * item.quantity).toLocaleString("vi-VN")}₫</p>
                                         </div>
                                     ))
                                 }

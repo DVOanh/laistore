@@ -71,17 +71,26 @@
 }
 
 .closechatbot {
-    width: 20px;
-    height: 20px;
-    background-color: rgba(255, 0, 0, 0);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    
     border: 0;
+    padding: 4px;
     cursor: pointer;
-    filter: invert(100%) sepia(93%) saturate(28%) hue-rotate(48deg) brightness(106%) contrast(109%);
+    display: flex;
+    justify-content: center;
+}
+
+.closechatbot:hover{
+    background-color: #00a9c0;
 }
 
 .closechatbot img {
     width: 100%;
     height: 100%;
+    border-radius: 50%;
+    filter: invert(100%) sepia(93%) saturate(28%) hue-rotate(48deg) brightness(106%) contrast(109%);
 }
 
 /* nội dung */
@@ -108,7 +117,7 @@
 
 /* bot */
 .message.bot {
-    background: #eee;
+    background: #f2f4f7;
     margin-right: auto;
     white-space: pre-line;
     margin-top: 10px;
@@ -138,7 +147,8 @@
     font-size: 16px;
     border: 1px solid rgb(255, 255, 255);
     border-radius: 20px;
-    background-color: rgb(242, 242, 242);
+    color: #080809;
+    background-color: #f2f4f7;
     font-size: 16px;
     margin: 10px;
 }

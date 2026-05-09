@@ -73,9 +73,11 @@ function Cart() {
                 state: {
                     type: "cart_muangay",
                     cartIds: selected,
-                    soluongsp: spgiohang.map(item=>({
-                        quantity: item.quantity
-                    }))
+                    soluongsp: spgiohang
+                        .filter(item => selected.includes(item.cart_id))
+                        .map(item => ({
+                            quantity: item.quantity
+                        }))
                 }
             })
         }
@@ -85,7 +87,7 @@ function Cart() {
         setHienthongbao(false)
     }
 
-    function tangSoLuong(cart_id, stock) {
+    async function tangSoLuong(cart_id, stock) {
         setSpgiohang(prev =>
             prev.map(item =>
                 item.cart_id === cart_id && item.stock <= stock
@@ -93,15 +95,33 @@ function Cart() {
                     : item
             )
         );
+        await fetch("https://backend-viv4.onrender.com/cart/tangsl", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                cart_id: cart_id
+            })
+        });
     }
-    function giamSoLuong(cart_id) {
+    async function giamSoLuong(cart_id) {
         setSpgiohang(prev =>
             prev.map(item =>
                 item.cart_id === cart_id && item.quantity > 1
                     ? { ...item, quantity: item.quantity - 1 }
                     : item
             )
-        )
+        );
+        await fetch("https://backend-viv4.onrender.com/cart/giamsl", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                cart_id: cart_id
+            })
+        });
     }
 
     return (

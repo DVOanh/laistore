@@ -121,7 +121,7 @@
 .checkout_title{
     margin-top: 30px;
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     align-items: center;
 }
 
@@ -140,12 +140,16 @@
 
 .checkout_item{
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     align-items: center;
     gap: 10px;
-    border: 1px solid rgb(203, 203, 203);
+    box-shadow:0 1px 3px rgb(180, 180, 180);
     border-radius: 10px;
     background-color: rgb(255, 255, 255);
+}
+
+.checkout_item:hover{
+    opacity: 0.9;
 }
 
 .price_checkout{
