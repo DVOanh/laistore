@@ -37,20 +37,29 @@ function Register() {
         navigate('/');
     }
     return (
-        <div>
-            <form className='formdangky' onSubmit={register}>
+        <div style={{ height: "calc(100vh - 80px)" }}>
+            <form className='formdangky' onSubmit={register} autoComplete='off'>
+                <label htmlFor="">Username</label>
                 <input type="text" placeholder="Nhap username"
-                    value={username} onChange={(e) => { setUsername(e.target.value) }} className='username'/>
-                <input type="password" placeholder="Nhap password" value={password} onChange={(e) => { setPassword(e.target.value) }} className='password'/>
-                <input type="password" placeholder="Nhap lai password" value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }} className='confirmPassword'/>
-                <input type="text" placeholder="Nhap email" value={email} onChange={(e) => { setEmail(e.target.value) }} required className='email'/>
+                    value={username} onChange={(e) => { setUsername(e.target.value) }} className='username' autoComplete='off' />
+                
+                <label htmlFor="">Email</label>
+                <input type="text" placeholder="Nhap email" value={email} onChange={(e) => { setEmail(e.target.value) }} required className='email' />
+                
+                <label htmlFor="">Password</label>
+                <input type="password" placeholder="Nhap password" value={password} onChange={(e) => { setPassword(e.target.value) }} className='password' autoComplete='new-password' />
+                
+                <label htmlFor="">Nhập lại password</label>
+                <input type="password" placeholder="Nhap lai password" value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }} className='confirmPassword' />
+
                 <button type="submit" className='btndangky'>Đăng ký</button>
+                <div className="cotk">
+                    <p>Bạn đã có tài khoản?
+                    </p>
+                    <Link to={'/login'}>Đăng nhập</Link>
+                </div>
             </form>
-            <div className="cotk">
-                <p>Bạn đã có tài khoản?
-                </p>
-                <Link to={'/login'}>Đăng nhập</Link>
-            </div>
+
         </div>
 
     )

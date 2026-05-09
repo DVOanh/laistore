@@ -1,42 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #f5f6f8;
+}
+
+/* CONTAINER */
 .login-container {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f5f5f5;
-  display: flex;
   flex-direction: column;
 }
 
+/* FORM */
 .login-form {
-  background: white;
-  padding: 40px;
-  width: 320px;
+  background: #ffffff;
+  padding: 35px;
+  width: 340px;
+
   display: flex;
   flex-direction: column;
   gap: 15px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
+/* INPUT */
 .login-form input {
-  padding: 10px;
+  padding: 12px 14px;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 16px;
+  outline: none;
+  transition: 0.2s;
 }
 
+.login-form input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
+}
+
+/* BUTTON */
 .login-form button {
-  padding: 10px;
-  background: #222;
+  padding: 12px;
+  background: #4a90e2;
   color: white;
   border: none;
   cursor: pointer;
   font-size: 16px;
+  border-radius: 8px;
+  transition: 0.2s;
 }
 
-.chuacotk{
+.login-form button:hover {
+  background: #357bd8;
+}
+
+/* LINK REGISTER */
+.chuacotk {
   display: flex;
-  margin-top: 15px;
-  gap: 7px;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.chuacotk a {
+  color: #4a90e2;
+  text-decoration: none;
+}
+
+.chuacotk a:hover {
+  text-decoration: underline;
 }

@@ -16,6 +16,8 @@ function ChatBot() {
         });
     };
 
+
+
     // Khi chat thay đổi
     useEffect(() => {
         scrollToBottom();
@@ -99,10 +101,10 @@ function ChatBot() {
                             <div className="logochatbot">
                                 <img src="/chatbot.png" alt="" style={{ width: "100%" }} />
                             </div>
-                            <p>Trợ lý AI</p>
+                            <p>Hỗ trợ khách hàng</p>
                         </div>
                         <button onClick={closechatbot} className="closechatbot">
-                            <img src="/close.png" alt="" />
+                            <img src="/close.png" alt="" title="Đóng đoạn chat"/>
                         </button>
                     </div>
                     <div className="chat-content">
@@ -136,11 +138,12 @@ function ChatBot() {
                     {/* INPUT */}
                     <div className="chat-input">
                         <input
-                            placeholder="Nhập tin nhắn..."
+                            placeholder="Aa"
                             value={loinhan}
                             onChange={(e) => setLoinhan(e.target.value)}
+                            onKeyDown={(e)=>{if (e.key === "Enter"){sendChat()}}}
                         />
-                        <button onClick={sendChat}><img src="/send.png" alt="" /></button>
+                        <button onClick={sendChat} ><img src="/send.png" alt="" /></button>
                     </div>
                 </div>
             )}

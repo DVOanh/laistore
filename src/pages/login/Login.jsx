@@ -83,12 +83,13 @@ function Login() {
                 />
 
                 <button type="submit">Đăng nhập</button>
-            </form>
-            <div className="chuacotk">
+                <div className="chuacotk">
                 <p>Bạn chưa có tài khoản?
                 </p>
                 <Link to={'/register'}>Đăng ký</Link>
             </div>
+            </form>
+            
         </div>
     );
 }
