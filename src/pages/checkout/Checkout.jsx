@@ -130,6 +130,7 @@ function Checkout() {
                                 <h1>Tên sản phẩm</h1>
                                 <h1>Số lượng</h1>
                                 <h1>Giá</h1>
+                                <h1>Tổng tiền</h1>
                             </div>
 
                             <div className="checkout_item">
@@ -137,9 +138,9 @@ function Checkout() {
                                     <img src={`/${product.image_url}`} alt="" className="img_checkout" />
                                 </div>
                                 <h5 className="name_checkout">Tên sản phẩm: {product.product_name}</h5>
-                                <p>1</p>
+                                <p>{product.soluong}</p>
                                 <p className="price_checkout">{Number(product.price).toLocaleString('vi-VN')}₫</p>
-                                {/* <p>Tổng tiền: {Number(tongtien).toLocaleString('vi-VN')} đ</p> */}
+                                <p>{Number(tongtien).toLocaleString('vi-VN')} đ</p>
                             </div>
                         </div>
                 }
@@ -243,7 +244,7 @@ function Checkout() {
                         {
                             cart_data.type === "cart_muangay"
                                 ? <span> {Number(tongtienCart).toLocaleString("vi-VN")}₫</span>
-                                : <span> {Number(product.price).toLocaleString("vi-VN")}₫</span>
+                                : <span> {Number(tongtien).toLocaleString("vi-VN")}₫</span>
                         }
                     </div>
                     <button type="submit" className="btndathang" onClick={dathang}>Đặt Hàng</button>

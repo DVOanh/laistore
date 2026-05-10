@@ -44,16 +44,11 @@
 }
 
 .product_name {
-    display: -webkit-box;
     box-sizing: border-box;
-    -webkit-line-clamp: 2;
-    
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
     overflow: hidden;
     font-weight: 100;
     color: #000000CC;
-    
 }
 
 .price {
@@ -86,6 +81,210 @@
     margin: 20px;
     font-size: 18px;
     color: red;
+}
+
+.khoisosanh{
+    display: flex;
+    gap: 5px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    color: rgb(0, 110, 17);
+}
+
+.khoisosanh input{
+    width: 16px;
+    height: 16px;
+    accent-color: orangered;
+    position: relative;
+}
+
+.khoisosanh input:hover+ .thongbaochonsp{
+    display: block;
+}
+
+.thongbaochonsp{
+    position: absolute;
+    display: none;
+    background-color: rgb(160, 160, 160);
+    color: rgb(255, 255, 255);
+    top: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 5px;
+    left: 0;
+}
+
+.overlay{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, .4);
+    z-index: 99999;
+    align-items: center;
+}
+
+.quabasp{
+    background-color: white;
+    padding: 20px;
+    width: 500px;
+    border-radius: 3px;
+}
+
+.quabasp button{
+    width: 100%;
+    margin-top: 100px;
+    padding: 10px;
+    background-color: orangered;
+    color: white;
+    border-radius: 2px;
+    border: 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.quabasp button:hover{
+    opacity: 0.8;
+}
+
+.compare_bar{
+    position: fixed;
+    bottom: 0;
+    left: 0; 
+    right: 0;
+    z-index: 9999;
+    background-color: white;
+    box-shadow: 0 1px 2px 2px rgb(164, 164, 164);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.compare_bar_item{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item_compare img{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.dsspdachon{
+    display: flex;
+    gap: 10px;
+}
+
+.item_compare{
+    width: 250px;
+    border: 1px solid rgb(216, 216, 216);
+    border-radius: 10px;
+    display: flex;
+    gap: 7px;
+    align-items: center;
+    position: relative;
+}
+
+.closesp{
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: 0;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.closesp:hover{
+    background-color: #f3f3f3;
+}
+
+.closesp img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    filter: invert(9%) sepia(97%) saturate(7002%) hue-rotate(280deg) brightness(113%) contrast(116%);
+}
+
+.xoatatca{
+    padding: 10px 18px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #f3f4f6;
+    color: #333;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.xoatatca:hover{
+    background: #e5e7eb;
+}
+.sosanhngay{
+    padding: 10px 20px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #ff5a1f;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.sosanhngay:hover{
+    transform: translateY(-2px);
+
+    background: #e94e16;
+}
+
+.btnsosanh{
+    display: flex;
+    gap: 10px;
+}
+
+.thongtinsosanh_parent{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.429);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overscroll-behavior: none;
+}
+
+.thongtinsosanh_child{
+    width: 70%;
+    height: 90vh;
+    background-color: white;
+    position: relative;
+    overscroll-behavior: none;
 }
 
 @media only screen and (max-width: 719px){

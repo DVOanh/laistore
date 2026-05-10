@@ -110,8 +110,8 @@ function ChatBot() {
                     <div className="chat-content">
                         {chat.map((c, i) => (
                             <div key={i}>
-                                {c.user && <div className="message user">{c.user}</div>}
-                                {c.bot && <div className="message bot">{c.bot}</div>}
+                                {c.user && <div className="message user"><span>{c.user}</span></div>}
+                                {c.bot && <div className="message bot"><span>{c.bot}</span></div>}
 
                                 {/* mốc cuối */}
                                 <div ref={endRef}></div>
@@ -142,6 +142,7 @@ function ChatBot() {
                             value={loinhan}
                             onChange={(e) => setLoinhan(e.target.value)}
                             onKeyDown={(e)=>{if (e.key === "Enter"){sendChat()}}}
+                            spellCheck={false}
                         />
                         <button onClick={sendChat} ><img src="/send.png" alt="" /></button>
                     </div>
