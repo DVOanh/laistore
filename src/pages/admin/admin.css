@@ -537,3 +537,7 @@ ul{
     border-radius: 5px;
     box-shadow: 0 1px 2px rgb(193, 32, 32);
 }
+
+.charts_list{
+    padding: 0 20px;
+}

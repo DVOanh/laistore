@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Doanhthu from "../../component/doanhthu7ngay/Doanhthu";
 
 function MainAdmin() {
 
@@ -46,25 +47,31 @@ function MainAdmin() {
 
 
     return (
-        <div className="dashboard_i">
-            <div className="card">
-                💰 Tổng doanh thu:
-                <span>{Number(tongdoanhthu?.total_revenue || 0).toLocaleString('vi-VN')} đ</span>
+        <div>
+            <div className="dashboard_i">
+                <div className="card">
+                    💰 Tổng doanh thu:
+                    <span>{Number(tongdoanhthu?.total_revenue || 0).toLocaleString('vi-VN')} đ</span>
+                </div>
+    
+                <div className="card">
+                    📦 Tổng đơn hàng:
+                    <span>{Number(tongdonhang?.total_orders || 0)}</span>
+                </div>
+    
+                <div className="card">
+                    👤 Tổng người dùng:
+                    <span>{Number(tongnguoidung?.tongnguoidung || 0)}</span>
+                </div>
+    
+                <div className="card">
+                    🛒 Tổng sản phẩm đã bán:
+                    <span>{Number(tongdaban?.tongdaban || 0)}</span>
+                </div>
             </div>
-
-            <div className="card">
-                📦 Tổng đơn hàng:
-                <span>{Number(tongdonhang?.total_orders || 0)}</span>
-            </div>
-
-            <div className="card">
-                👤 Tổng người dùng:
-                <span>{Number(tongnguoidung?.tongnguoidung || 0)}</span>
-            </div>
-
-            <div className="card">
-                🛒 Tổng sản phẩm đã bán:
-                <span>{Number(tongdaban?.tongdaban || 0)}</span>
+            <div className="charts_list">
+                <Doanhthu/>
+                
             </div>
         </div>
     )
