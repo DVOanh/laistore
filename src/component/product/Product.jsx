@@ -68,6 +68,10 @@ function Product() {
     setOpenModal(false)
   }
 
+  function closeoverlay() {
+    setOpenModal(false)
+  }
+
   return (
     <div className='product_container'>
       <div className='tieudesp'>
@@ -140,8 +144,17 @@ function Product() {
                   <button className='sosanhngay' onClick={sosanhngay}>So sánh ngay</button>
                   {
                     openmodal && (
-                      <div className='thongtinsosanh_parent'>
+                      <div className='thongtinsosanh_parent' onClick={(e) => {
+                        if (e.target === e.currentTarget) {
+                          closeoverlay()
+                        }
+                      }}>
                         <div className='thongtinsosanh_child'>
+                          <div className='sosanh_header'>
+                            <h2>So sánh sản phẩm</h2>
+                            <p>Đối chiếu thông số chi tiết để chọn sản phẩm phù hợp</p>
+                          </div>
+
                           <table className='dsspsosanh' border={1}>
 
                             <tr>

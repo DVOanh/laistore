@@ -99,7 +99,7 @@ function Product_detail() {
     const selectedVariantData = thongtinmay?.find(
         v => v.id === Number(selectedVariant)
     );
-    
+
     useEffect(() => {
         fetch(`https://backend-viv4.onrender.com/variant/${id}`)
             .then(res => {
@@ -195,11 +195,11 @@ function Product_detail() {
                         <div>
                             <p>Màu sắc </p>
                             <div>
-                                
+
                             </div>
                         </div>
                         <div className='khoibtn'>
-                            <button type='button' onClick={btnthemgiohang} className='btnthemgiohang'><img src="/shopping-cart-add.png" alt="" className='iconthemgiohang'/>Thêm Vào Giỏ Hàng</button>
+                            <button type='button' onClick={btnthemgiohang} className='btnthemgiohang'><img src="/shopping-cart-add.png" alt="" className='iconthemgiohang' />Thêm Vào Giỏ Hàng</button>
                             <button type='button' onClick={muangay} className='btnmuangay'>Mua Ngay</button>
                         </div>
                     </div>
@@ -241,28 +241,36 @@ function Product_detail() {
             <div className='review'>
                 <h1>ĐÁNH GIÁ SẢN PHẨM</h1>
                 {
-                    slstar.map(item => (
-                        <p>{item.tbc + "⭐".repeat(item.tbc)}</p>
-                    ))
+                    slstar.length > 0  && slstar[0].tbc ? (
+                        slstar.map(item => (
+                            <p>{item.tbc + "⭐".repeat(item.tbc)}</p>
+                        ))
+                    ) : (
+                        <p>{""}</p>
+                    )
                 }
                 {
-                    review.map(item => (
-                        <div className='review_item'>
-                            <Link to={`/profile/${item.user_id}`} className='user_rv'>
-                                <img src={`/${item.avatar}`} style={{ width: "40px", borderRadius: '50%', aspectRatio: '1/1', objectFit: 'cover' }} />
-                                <div className='uname_time'>
-                                    <h1>{item.username}</h1>
-                                    <h1 className="star">{"⭐".repeat(Number(item.star))}</h1>
+                    review.length > 0 ? (
+                        review.map(item => (
+                            <div className='review_item'>
+                                <Link to={`/profile/${item.user_id}`} className='user_rv'>
+                                    <img src={`/${item.avatar}`} style={{ width: "40px", borderRadius: '50%', aspectRatio: '1/1', objectFit: 'cover' }} />
+                                    <div className='uname_time'>
+                                        <h1>{item.username}</h1>
+                                        <h1 className="star">{"⭐".repeat(Number(item.star))}</h1>
 
+                                    </div>
+                                </Link>
+                                <div className='inforeview'>
+                                    <p>{new Date(item.created_at).toLocaleString('vi-VN')}</p>
+                                    <p>{item.content}</p>
                                 </div>
-                            </Link>
-                            <div className='inforeview'>
-                                <p>{new Date(item.created_at).toLocaleString('vi-VN')}</p>
-                                <p>{item.content}</p>
-                            </div>
 
-                        </div>
-                    ))
+                            </div>
+                        ))
+                    ) : (
+                        <p style={{marginTop: "10px"}}>Sản phẩm này chưa có đánh giá</p>
+                    )
                 }
             </div>
 
