@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import Doanhthu from "../../component/doanhthu7ngay/Doanhthu";
-
+import Doanhthu from "../../component/doanhthu/Doanhthu";
+import Doanhthuthuonghieu from "../../component/doanhthu/Doanhthuthuonghieu";
+import Donhangtheotrangthai from "../../component/doanhthu/Donhangtheotrangthai";
+import Sanphambanchay from "../../component/doanhthu/Sanphambanchay";
 function MainAdmin() {
 
     const [tongdoanhthu, setTongdoanhthu] = useState(null);
@@ -71,7 +73,12 @@ function MainAdmin() {
             </div>
             <div className="charts_list">
                 <Doanhthu/>
-                
+                <Doanhthuthuonghieu/>
+            </div>
+            <br />
+            <div className="charts_list">
+                <Donhangtheotrangthai/>
+                <Sanphambanchay/>
             </div>
         </div>
     )
