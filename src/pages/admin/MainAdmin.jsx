@@ -3,6 +3,7 @@ import Doanhthu from "../../component/doanhthu/Doanhthu";
 import Doanhthuthuonghieu from "../../component/doanhthu/Doanhthuthuonghieu";
 import Donhangtheotrangthai from "../../component/doanhthu/Donhangtheotrangthai";
 import Sanphambanchay from "../../component/doanhthu/Sanphambanchay";
+import Donhangmoinhat from "../../component/doanhthu/Donhangmoinhat";
 function MainAdmin() {
 
     const [tongdoanhthu, setTongdoanhthu] = useState(null);
@@ -79,6 +80,10 @@ function MainAdmin() {
             <div className="charts_list">
                 <Donhangtheotrangthai/>
                 <Sanphambanchay/>
+            </div>
+            <br />
+            <div className="donhangmoinhat">
+                <Donhangmoinhat/>
             </div>
         </div>
     )

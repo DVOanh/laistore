@@ -51,7 +51,7 @@ function Donhangtheotrangthai() {
         );
     };
     if (!data || data.length === 0) {
-        return <div style={{ height: 400, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Đang tải dữ liệu...</div>;
+        return <div style={{ height: 300, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Đang tải dữ liệu...</div>;
     }
     return (
         <div
@@ -67,7 +67,7 @@ function Donhangtheotrangthai() {
             <h3 style={{ textAlign: "center", marginBottom: "20px" }}>
                 Tỷ Lệ Trạng Thái Đơn Hàng
             </h3>
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="90%">
                 <PieChart>
                     <Pie
                         data={data}

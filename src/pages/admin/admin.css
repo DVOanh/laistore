@@ -544,3 +544,58 @@ ul{
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
+
+/* Container bao ngoài để tạo bo góc và đổ bóng */
+.table-container {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    margin: 0 20px;
+}
+
+/* Style cho bảng */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+}
+
+/* Header bảng */
+thead tr {
+    background-color: #f8f9fa;
+    color: #555;
+    text-align: left;
+    font-weight: 600;
+}
+
+th, td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Cột tổng tiền nên in đậm để dễ nhìn */
+td:nth-child(3) {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* Hiệu ứng hover cho dòng */
+tbody tr:hover {
+    background-color: #f1f7ff;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+/* Màu sắc cho Trạng thái (Ví dụ) */
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Bạn có thể thêm class động dựa trên item.status_name */
+.status-done { background: #e6fffa; color: #38b2ac; }
+.status-pending { background: #fffaf0; color: #dd6b20; }
