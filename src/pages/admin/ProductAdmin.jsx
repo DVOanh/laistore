@@ -3,11 +3,11 @@ import Product_list_admin from "./component_admin/Product_list_admin";
 import { useEffect } from "react";
 function ProductAdmin() {
     useEffect(() => {
-                document.title = "Quản lý sản phẩm";
-            }, []);
+        document.title = "Quản lý sản phẩm";
+    }, []);
     return (
         <div>
-           <Outlet/>
+            <Outlet />
         </div>
     )
 }

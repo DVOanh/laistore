@@ -104,11 +104,11 @@ function Edit_product_admin() {
     const [storagebt, setStoragebt] = useState("");
     const [rambt, setRambt] = useState("");
     const [skubt, setSkubt] = useState("");
-    function thembienthe(){
-        fetch (`https://backend-viv4.onrender.com/admin/insert_variant/${product_id}`, {
+    function thembienthe() {
+        fetch(`https://backend-viv4.onrender.com/admin/insert_variant/${product_id}`, {
             method: 'POST',
             headers: {
-                'Content-Type' : "application/json"
+                'Content-Type': "application/json"
             },
             body: JSON.stringify({
                 price: pricebt,
@@ -118,15 +118,15 @@ function Edit_product_admin() {
                 sku: skubt
             })
         })
-        .then(res=>res.json())
-        .then(data=>{
-            alert(data.message);
-            setModalStatus(false)
-        })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.message);
+                setModalStatus(false)
+            })
     }
 
-    function btnxoabt(){
-        alert ('xoa');
+    function btnxoabt() {
+        alert('xoa');
     }
     const [productbt, setProductbt] = useState("");
     return (
@@ -176,37 +176,41 @@ function Edit_product_admin() {
                 <br />
                 <button type="submit">Cập nhật</button>
             </form>
-            <div>
+            <div className="table-container">
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: "15px" }}><h1 className="h1_title">DANH SÁCH BIẾN THỂ</h1><button type="button" onClick={btnsetModal} className="btn_thembt">Thêm biến thể</button></div>
-                <table className="product_table">
-                    <tr className="title">
-                        <th>Product ID</th>
-                        <th>Ảnh sản phẩm</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Storage</th>
-                        <th>RAM</th>
-                        <th>Giá</th>
-                        <th>Kho</th>
-                        <th>Thao tác</th>
-                    </tr>
+                <table >
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Ảnh sản phẩm</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Storage</th>
+                            <th>RAM</th>
+                            <th>Giá</th>
+                            <th>Kho</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
 
-                    {
-                        variant.map(v => (
-                            <tr>
-                                <td>{v.product_id}</td>
-                                <td><img src={`/${v.image_url}`} alt="" width={"100px"} /></td>
-                                <td>{v.product_name}</td>
-                                <td>{v.storage}</td>
-                                <td>{v.ram}</td>
-                                <td>{Number(v.price).toLocaleString('vi-VN')}đ</td>
-                                <td>{v.stock}</td>
-                                <td>
-                                    <button className="btn_edit">Sửa</button>
-                                    <button className="btn_delete" onClick={btnxoabt}>Xóa</button>
-                                </td>
-                            </tr>
-                        ))
-                    }
+                    <tbody>
+                        {
+                            variant.map(v => (
+                                <tr>
+                                    <td>{v.product_id}</td>
+                                    <td><img src={`/${v.image_url}`} alt="" width={"100px"} className="product_image_admin"/></td>
+                                    <td>{v.product_name}</td>
+                                    <td>{v.storage}</td>
+                                    <td>{v.ram}</td>
+                                    <td>{Number(v.price).toLocaleString('vi-VN')}đ</td>
+                                    <td>{v.stock}</td>
+                                    <td>
+                                        <button className="btn_edit">Sửa</button>
+                                        <button className="btn_delete" onClick={btnxoabt}>Xóa</button>
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
 
                 </table>
             </div>
@@ -218,7 +222,7 @@ function Edit_product_admin() {
                                 <h1>NHẬP THÔNG TIN BIẾN THỂ</h1>
                                 <label htmlFor="">Tên sản phẩm</label>
 
-                                <select value={productbt} onChange={(e)=>setProductbt(e.target.value)}>
+                                <select value={productbt} onChange={(e) => setProductbt(e.target.value)}>
                                     {
                                         sanpham.map(sp => (
                                             <option key={sp.product_id} value={sp.product_id}>{sp.product_name}</option>
@@ -228,15 +232,15 @@ function Edit_product_admin() {
 
                                 <label htmlFor="">Giá sản phẩm</label>
 
-                                <input type="number" placeholder="Nhập giá sản phẩm" value={pricebt} onChange={(e)=>setPricebt(e.target.value)}/>
+                                <input type="number" placeholder="Nhập giá sản phẩm" value={pricebt} onChange={(e) => setPricebt(e.target.value)} />
 
                                 <label htmlFor="">Kho</label>
 
-                                <input type="number" placeholder="Nhập số lượng kho" value={stockbt} onChange={(e)=>setStockbt(e.target.value)}/>
+                                <input type="number" placeholder="Nhập số lượng kho" value={stockbt} onChange={(e) => setStockbt(e.target.value)} />
 
                                 <label htmlFor="">Storage</label>
 
-                                <select name="storage" value={storagebt} onChange={(e)=>setStoragebt(e.target.value)}>
+                                <select name="storage" value={storagebt} onChange={(e) => setStoragebt(e.target.value)}>
                                     <option value="128GB">128GB</option>
                                     <option value="256GB">256GB</option>
                                     <option value="512GB">512GB</option>
@@ -245,7 +249,7 @@ function Edit_product_admin() {
 
                                 <label htmlFor="">RAM</label>
 
-                                <select name="ram" value={rambt} onChange={(e)=>setRambt(e.target.value)}>
+                                <select name="ram" value={rambt} onChange={(e) => setRambt(e.target.value)}>
                                     <option value="4GB">4GB</option>
                                     <option value="6GB">6GB</option>
                                     <option value="8GB">8GB</option>
@@ -254,7 +258,7 @@ function Edit_product_admin() {
                                 </select>
                                 <label htmlFor="">Mã định danh sản phẩm</label>
 
-                                <input type="text" placeholder="Nhập mã định danh sản phẩm" value={skubt} onChange={(e)=>setSkubt(e.target.value)}/>
+                                <input type="text" placeholder="Nhập mã định danh sản phẩm" value={skubt} onChange={(e) => setSkubt(e.target.value)} />
                             </form>
                             <div style={{ display: 'flex', justifyContent: 'right', gap: '10px' }}>
                                 <button onClick={hidenModal} className="btn_huy">Hủy</button>

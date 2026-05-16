@@ -29,6 +29,7 @@ function Dashboard() {
                     <Link to={'/admin/dashboard'} className={`link_logo_admin ${thunho ? "anlogo" : ""}`}><img src="/logo_laistore.png" alt="" style={{ width: '40px' }} className="logo_admin" /></Link>
                     <img src="/sidebar.png" alt="" className="sidebar" onClick={() => setThunho(!thunho)} />
                 </div>
+                
                 <ul className={`dashboard_item_list ${thunho ? "an" : ""}`}>
                     <li><NavLink to="/admin/dashboard" className={({ isActive }) => isActive ? "dashboard_item active" : "dashboard_item"} end>🏠 Trang chủ</NavLink></li>
                     <li><NavLink to="/admin/dashboard/products" className={({ isActive }) => isActive ? "dashboard_item active" : "dashboard_item"}>📱 Quản lý sản phẩm</NavLink></li>

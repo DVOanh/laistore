@@ -9,6 +9,7 @@ function Doanhthu() {
             .then(res => res.json())
             .then(data => {
                 setData(data);
+                
             })
     }, []);
     return (

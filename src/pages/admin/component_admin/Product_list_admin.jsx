@@ -29,32 +29,42 @@ function Product_list_admin() {
     }, []);
 
     return (
-        <table className="product_table">
-            <tr className="title">
-                <th>ID</th>
-                <th>Ảnh sản phẩm</th>
-                <th>Tên sản phẩm</th>
-                <th>Giá thấp nhất</th>
-                <th>Tổng tồn kho</th>
-                <th>Hành động</th>
-                <th><button className="btnthem" onClick={()=>nav('add')}>Thêm sản phẩm</button></th>
-            </tr>
-            {
-                product.map(item => (
+        <div className="table-container">
+            <div className="tieude_pd_admin">
+                <h1>Sản phẩm</h1>
+                <button className="btnthem" onClick={() => nav('add')}>Thêm sản phẩm</button>
+            </div>
+            <br />
+            <table>
+                <thead>
                     <tr>
-                        <td>{item.product_id}</td>
-                        <td><img src={`/${item.image_url}`} alt="" className="product_image_admin" /></td>
-                        <td>{item.product_name}</td>
-                        <td>{Number(item.min_price).toLocaleString('vi-VN')}đ</td>
-                        <td>{item.total_stock}</td>
-                        <td>
-                            <button onClick={()=>nav(`edit/${item.product_id}`)} className="btn_edit">Sửa</button>
-                            <button onClick={() => del_product_admin(item.product_id)} type="button" className="btn_delete">Xóa</button>
-                        </td>
+                        <th>ID</th>
+                        <th>Ảnh sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá thấp nhất</th>
+                        <th>Tổng tồn kho</th>
+                        <th>Hành động</th>
                     </tr>
-                ))
-            }
-        </table>
+                </thead>
+                <tbody>
+                    {
+                        product.map(item => (
+                            <tr>
+                                <td>{item.product_id}</td>
+                                <td><img src={`/${item.image_url}`} alt="" className="product_image_admin" /></td>
+                                <td>{item.product_name}</td>
+                                <td>{Number(item.min_price).toLocaleString('vi-VN')}đ</td>
+                                <td>{item.total_stock}</td>
+                                <td >
+                                    <button onClick={() => nav(`edit/${item.product_id}`)} className="btn-update">Sửa</button>
+                                    <button onClick={() => del_product_admin(item.product_id)} type="button" className="btn-delete" style={{ marginLeft: 10 }}>Xóa</button>
+                                </td>
+                            </tr>
+                        ))
+                    }
+                </tbody>
+            </table>
+        </div>
     )
 }
 

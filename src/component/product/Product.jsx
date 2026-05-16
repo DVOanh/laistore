@@ -85,7 +85,7 @@ function Product() {
               <img src={`/${item.image_url}`} />
               <h3 className='product_name'>{item.product_name}</h3>
               <p className='price'>{Number(item.price).toLocaleString('vi-VN')}₫</p>
-              <p className='daban'>Đã bán {item.total_sold}</p>
+              <p className='daban'>Đã bán {item.sldaban}</p>
               <div className='khoisosanh' onClick={(e) => { e.preventDefault(); e.stopPropagation() }}>
                 <input type="checkbox" onClick={(e) => e.stopPropagation()} checked={spdachon.includes(item.variant_id)} onChange={(e) => {
                   if (e.target.checked) {

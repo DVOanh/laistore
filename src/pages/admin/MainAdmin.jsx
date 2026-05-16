@@ -69,7 +69,7 @@ function MainAdmin() {
     
                 <div className="card">
                     🛒 Tổng sản phẩm đã bán:
-                    <span>{Number(tongdaban?.tongdaban || 0)}</span>
+                    <span>{Number(tongdaban?.sldaban || 0)}</span>
                 </div>
             </div>
             <div className="charts_list">

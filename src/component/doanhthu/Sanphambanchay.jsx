@@ -49,7 +49,7 @@ function Doanhthuthuonghieu() {
 
                 <Tooltip />
 
-                <Bar dataKey="total_sold" fill="#8884d8" radius={[0, 10, 10, 0]} />
+                <Bar dataKey="sldaban" fill="#8884d8" radius={[0, 10, 10, 0]} />
             </BarChart>
         </div>
     )
