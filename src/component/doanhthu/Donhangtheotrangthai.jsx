@@ -21,7 +21,7 @@ function Donhangtheotrangthai() {
         "Hoàn thành": "#149600", // Xanh lá
         "Chờ xác nhận": "#ffae00", // Vàng
         "Đang giao hàng": "#0088FE", // Xanh dương
-        "Đã hủy": "#FF8042", // Cam/Đỏ
+        "Đã hủy": "#e00000", // Cam/Đỏ
     };
     // Hàm để render label phần trăm bên trong hoặc bên ngoài miếng bánh
     const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {

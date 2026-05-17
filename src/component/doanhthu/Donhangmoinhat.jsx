@@ -10,35 +10,41 @@ function Doanhthu() {
             })
     }, []);
     return (
+
         <div className="table-container">
-            <h3 style={{ marginBottom: '15px', fontSize: '18px' }}>Danh sách đơn hàng mới</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Mã đơn</th>
-                        <th>Khách hàng</th>
-                        <th>Tổng tiền</th>
-                        <th>Trạng thái</th>
-                        <th>Ngày tạo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map((item, index) => (
-                        <tr key={index}>
-                            <td style={{ color: '#3182ce', fontWeight: 'bold' }}>{item.order_code}</td>
-                            <td>{item.hoten}</td>
-                            <td>{Number(item.tongtien).toLocaleString()}đ</td>
-                            <td>
-                                {/* Thêm một span để làm badge cho trạng thái */}
-                                <span className={`status-badge ${item.status_id === 1 ? 'status-done' : 'status-pending'}`}>
-                                    {item.status_name}
-                                </span>
-                            </td>
-                            <td>{new Date(item.created_at).toLocaleDateString("vi-VN")}</td>
+            <h3 style={{ marginBottom: '15px', fontSize: '18px' }}>Danh sách đơn hàng cần xác nhận</h3>
+            {data.length === 0 ? (
+                <p>Hôm nay chưa có đơn nào cả</p>
+            ) : (
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã đơn</th>
+                            <th>Khách hàng</th>
+                            <th>Tổng tiền</th>
+                            <th>Trạng thái</th>
+                            <th>Ngày tạo</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {data.map((item, index) => (
+                            <tr key={index}>
+                                <td style={{ color: '#3182ce', fontWeight: 'bold' }}>{item.order_code}</td>
+                                <td>{item.hoten}</td>
+                                <td>{Number(item.tongtien).toLocaleString()}đ</td>
+                                <td>
+                                    {/* Thêm một span để làm badge cho trạng thái */}
+                                    <span className={`status-badge ${item.status_id === 1 ? 'status-done' : 'status-pending'}`}>
+                                        {item.status_name}
+                                    </span>
+                                </td>
+                                <td>{new Date(item.created_at).toLocaleDateString("vi-VN")}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+
+            )}
         </div>
     )
 }

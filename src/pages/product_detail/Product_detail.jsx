@@ -25,8 +25,10 @@ function Product_detail() {
     // const [slgh, setSlgh] = useState(0);
     // const decode = jwtDecode(token);
 
-    function btnCongSl() {
-        setSoluong(soluong + 1);
+    function btnCongSl(stock) {
+        if(soluong < stock){
+            setSoluong(soluong + 1);
+        }
     }
 
     function btnTruSl() {
@@ -35,7 +37,15 @@ function Product_detail() {
         }
     }
 
-    function muangay() {
+    function muangay(stock) {
+        if (stock <= 0) {
+            alert("Sản phẩm này đã hết");
+            return
+        }
+        if(soluong > stock){
+            alert("Vui lòng chọn số lượng ko quá tồn kho")
+            return
+        }
         const data = {
             product_variant_id: selectedVariantData?.id,
             soluong: soluong,
@@ -57,7 +67,15 @@ function Product_detail() {
     //         });
     // }
 
-    function btnthemgiohang() {
+    function btnthemgiohang(stock) {
+        if (stock <= 0) {
+            alert("Sản phẩm này hiện đã hết hàng");
+            return;
+        }
+        if(soluong > stock){
+            alert("Vui lòng chọn số lượng ko quá tồn kho")
+            return
+        }
         if (!token) {
             nav('/login');
             return;
@@ -166,12 +184,7 @@ function Product_detail() {
                         <div className='giasp'><h3>
                             {Number(selectedVariantData?.price).toLocaleString('vi-VN')}đ
                         </h3></div>
-                        <div className='khoisl'>
-                            <p>Số lượng </p>
-                            <button type='button' onClick={btnTruSl} className='btntru'>-</button>
-                            <input min={1} value={soluong} className='inputsl' onChange={(e) => { setSoluong(Number(e.target.value)) }} />
-                            <button type='button' onClick={btnCongSl} className='btncong'>+</button>
-                        </div>
+
                         <div className='thongtinmay'>
                             <p>Phân loại </p>
                             {thongtinmay.map(item => (
@@ -192,15 +205,36 @@ function Product_detail() {
                                 </div>
                             ))}
                         </div>
+
                         <div>
                             <p>Màu sắc </p>
                             <div>
 
                             </div>
                         </div>
+                        <div className='khoisl'>
+                            <p>Số lượng </p>
+                            <button type='button' onClick={btnTruSl} className='btntru'>-</button>
+                            <input min={1} max={product.stock} value={soluong} className='inputsl' onChange={(e) => {
+                                let value = Number(e.target.value);
+
+                                if (value > product.stock) {
+                                    value = product.stock;
+                                }
+
+                                if (value < 1) {
+                                    value = 1;
+                                }
+
+                                setSoluong(value);
+                            }} />
+                            <button type='button' onClick={()=>btnCongSl(product.stock)} className='btncong'>+</button>
+                            <div style={{ marginLeft: 20 }}></div>
+                            {product.stock <= 0 ? (<p>HẾT HÀNG</p>) : (<p>CÒN HÀNG (còn {product.stock} sản phẩm trong kho)</p>)}
+                        </div>
                         <div className='khoibtn'>
-                            <button type='button' onClick={btnthemgiohang} className='btnthemgiohang'><img src="/shopping-cart-add.png" alt="" className='iconthemgiohang' />Thêm Vào Giỏ Hàng</button>
-                            <button type='button' onClick={muangay} className='btnmuangay'>Mua Ngay</button>
+                            <button type='button' onClick={() => btnthemgiohang(product.stock)} className='btnthemgiohang'><img src="/shopping-cart-add.png" alt="" className='iconthemgiohang' />Thêm Vào Giỏ Hàng</button>
+                            <button type='button' onClick={() => muangay(product.stock)} className='btnmuangay'>Mua Ngay</button>
                         </div>
                     </div>
                 </div>
@@ -241,7 +275,7 @@ function Product_detail() {
             <div className='review'>
                 <h1>ĐÁNH GIÁ SẢN PHẨM</h1>
                 {
-                    slstar.length > 0  && slstar[0].tbc ? (
+                    slstar.length > 0 && slstar[0].tbc ? (
                         slstar.map(item => (
                             <p>{item.tbc + "⭐".repeat(item.tbc)}</p>
                         ))
@@ -269,7 +303,7 @@ function Product_detail() {
                             </div>
                         ))
                     ) : (
-                        <p style={{marginTop: "10px"}}>Sản phẩm này chưa có đánh giá</p>
+                        <p style={{ marginTop: "10px" }}>Sản phẩm này chưa có đánh giá</p>
                     )
                 }
             </div>

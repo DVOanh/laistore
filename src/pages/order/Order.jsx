@@ -21,9 +21,9 @@ function Order() {
     return (
         <div className="status_container">
             <div className="status_list">
-                <Link to={'/order'} className={`status ${!status_id ? "active" : ""}`}>Tất cả</Link>
+                <Link to={'/user/purchase'} className={`status ${!status_id ? "active" : ""}`}>Tất cả</Link>
                 {order_status.map(item => (
-                    <Link key={item.status_id} to={`/order/${item.status_id}`} className={String(status_id) === String(item.status_id) ? "status active" : "status"}>{item.status_name}</Link>
+                    <Link key={item.status_id} to={`/user/purchase/${item.status_id}`} className={String(status_id) === String(item.status_id) ? "status active" : "status"}>{item.status_name}</Link>
                 ))}
             </div>
             <Outlet />

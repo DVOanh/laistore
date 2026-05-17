@@ -70,7 +70,7 @@ function Header() {
                     </Link>
                 {user ? (
                     <div className='hihi'>
-                        <Link to={`/profile/${user.user_id}`} className='user'>
+                        <Link to={`/user/account`} className='user'>
                             <img src={`/${user.avatar}`} />
                             <h5>{user.username}</h5>
                             
@@ -78,8 +78,8 @@ function Header() {
                         <div className='dr_arrow'>
                             <div className='arrow'></div>
                             <ul className='thaotac'>
-                                <li><Link to={`/profile/${user.user_id}`} className='btntaikhoan'>Tài khoản của tôi</Link></li>
-                                <li><Link to='/order' className='btndonhang'>Đơn hàng</Link></li>
+                                <li><Link to={`/user/account`} className='btntaikhoan'>Tài khoản của tôi</Link></li>
+                                <li><Link to='user/purchase' className='btndonhang'>Đơn hàng</Link></li>
                                 <li><div onClick={btnDangxuat} className='btndangxuat'>Đăng xuất</div></li>
                             </ul>
                         </div>

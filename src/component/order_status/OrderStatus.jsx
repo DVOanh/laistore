@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, data } from "react-router-dom";
 import "./orderStatus.css";
 import Loading from "../loading/Loading";
 import { jwtDecode } from "jwt-decode";
 function OrderStatus() {
     const [order, setOrder] = useState([]);
+    const [order_item, setOrder_item] = useState([]);
     const token = localStorage.getItem("token");
     const { status_id } = useParams();
     const [loading, setLoading] = useState(true);
+    const [modalDanhgia, setModaldanhgia] = useState(false);
     const decode = jwtDecode(token);
     const navigate = useNavigate();
     function fetchOrder() {
@@ -61,8 +63,17 @@ function OrderStatus() {
         }
     }
 
-    function xemchitiet(order_item_id){
+    function xemchitiet(order_item_id) {
         navigate(`/order_item/${order_item_id}`);
+    }
+
+    function openModalDanhgia(order_id) {
+        fetch(`https://backend-viv4.onrender.com/order/order_item/${order_id}`)
+            .then(res => res.json())
+            .then(data => {
+                setOrder_item(data)
+            })
+        setModaldanhgia(true)
     }
 
     function huydon(order_item_id, order_id, soluong_sp, variant_id) {
@@ -96,7 +107,7 @@ function OrderStatus() {
                 return (
                     <div className="btn">
                         <button className="btnorder huydon" onClick={() => huydon(order_item_id, order_id, soluong_sp, variant_id)}>Hủy đơn</button>
-                        <button className="btnorder xemchitiet" onClick={()=> xemchitiet(order_item_id)}>Xem chi tiết</button>
+                        <button className="btnorder xemchitiet" onClick={() => xemchitiet(order_item_id)}>Xem chi tiết</button>
                     </div>
                 );
 
@@ -104,7 +115,7 @@ function OrderStatus() {
                 return (
                     <div className="btn">
                         <button className="btnorder mualai">Mua lại</button>
-                        <button className="btnorder xemchitiet" onClick={()=> xemchitiet(order_item_id)}>Xem chi tiết</button>
+                        <button className="btnorder xemchitiet" onClick={() => xemchitiet(order_item_id)}>Xem chi tiết</button>
                     </div>
                 );
 
@@ -112,7 +123,7 @@ function OrderStatus() {
                 return (
                     <div className="btn">
                         <button className="btnorder theodoi">Theo dõi</button>
-                        <button className="btnorder xemchitiet" onClick={()=> xemchitiet(order_item_id)}>Xem chi tiết</button>
+                        <button className="btnorder xemchitiet" onClick={() => xemchitiet(order_item_id)}>Xem chi tiết</button>
                     </div>
                 );
 
@@ -120,7 +131,7 @@ function OrderStatus() {
                 return (
                     <div className="btn">
                         <button className="btnorder mualai">Mua lại</button>
-                        <button className="btnorder danhgia">Đánh giá</button>
+                        <button className="btnorder danhgia" onClick={() => openModalDanhgia(order_id)}>Đánh giá</button>
                     </div>
                 );
 
@@ -137,13 +148,41 @@ function OrderStatus() {
     }
     return (
         <div className="order_list">
+            {
+                modalDanhgia && (
+                    <div className="overlay">
+                        <div className="modaldanhgia">
+                            <button className="close-btn" onClick={() => setModaldanhgia(false)}>
+                                ✕
+                            </button>
+                            {order_item.map(item => (
+                                <div key={item.order_item_id} className="item">
+
+                                    <img src={`/${item.image_url}`} width={60} />
+
+                                    <div>
+                                        <p>{item.product_name}</p>
+                                        <p>Số lượng: {item.soluong_sp}</p>
+                                        <p>Giá: {Number(item.price).toLocaleString("vi-VN")}đ</p>
+                                    </div>
+
+                                    <button onClick={() => review(item.order_item_id)}>
+                                        Đánh giá
+                                    </button>
+
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )
+            }
             {loading ?
                 (<Loading />)
                 :
                 !order || order.length === 0 ?
                     (
                         <div className="kocodonhang">
-                            <div className="no_order"><img src="/no_order.jpg" alt=""/></div>
+                            <div className="no_order"><img src="/no_order.jpg" alt="" /></div>
                             <p>Chưa có đơn hàng</p>
                         </div>
                     )

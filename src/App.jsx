@@ -30,6 +30,8 @@ import Edit_product_admin from './pages/admin/component_admin/Edit_product_admin
 import Danhmuc_item from './pages/danhmuc_item/Danhmuc_item';
 import Chitietdonhang from './pages/chitietdonhang/Chitietdonhang';
 import Order_items from './pages/admin/component_admin/Order_items';
+import AdminProtectedRoute from './ProtectedRouterAdmin';
+import User from './component/user/User';
 function App() {
   return (
     <BrowserRouter>
@@ -37,17 +39,20 @@ function App() {
       <Routes>
         <Route element={<MainLayout />}>
           <Route path='/' element={<Home />} />
-          <Route path='/categories/:iddanhmuc' element={<Danhmuc_item/>}/>
+          <Route path='/categories/:iddanhmuc' element={<Danhmuc_item />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/chitietsanpham/:id' element={<Product_detail />} />
-          <Route path='/profile/:id' element={<Profile />} />
-          <Route path='/dsspsearch/:product_id' element={<Listproductsearch />} />
-          <Route path='/order' element={<Order />}>
-            <Route path="/order" element={<OrderStatus />} />
-            <Route path=":status_id" element={<OrderStatus />} />
+          <Route path='/user' element={<User />} >
+            <Route path='purchase' element={<Order />}>
+              <Route index element={<OrderStatus />} />
+              <Route path=":status_id" element={<OrderStatus />} />
+            </Route>
+            <Route path='account' element={<Profile/>}/>
           </Route>
-          <Route path='/order_item/:order_item_id' element={<Chitietdonhang/>}/>
+          <Route path='/dsspsearch/:product_id' element={<Listproductsearch />} />
+
+          <Route path='/order_item/:order_item_id' element={<Chitietdonhang />} />
 
           <Route path='/giohang/:user_id' element={
             <ProtectedRouter>
@@ -58,7 +63,7 @@ function App() {
             <ProtectedRouter>
               <Checkout />
             </ProtectedRouter>
-          }/>
+          } />
           <Route path='/checkout/:id' element={
             <ProtectedRouter>
               <Checkout />
@@ -66,19 +71,21 @@ function App() {
           } />
         </Route>
 
-        <Route path='/admin' element={<AdminLayout />}>
-          
-          <Route path="dashboard" element={<Dashboard />}>
-            <Route index element={<MainAdmin />} />
-            <Route path='products' element={<ProductAdmin/>}>
-              <Route index element={<Product_list_admin/>}/>
-              <Route path='add' element={<Add_product_admin/>}/>
-              <Route path='edit/:product_id' element={<Edit_product_admin/>}/>
+        <Route element={<AdminProtectedRoute />}>
+          <Route path='/admin' element={<AdminLayout />}>
+
+            <Route path="dashboard" element={<Dashboard />}>
+              <Route index element={<MainAdmin />} />
+              <Route path='products' element={<ProductAdmin />}>
+                <Route index element={<Product_list_admin />} />
+                <Route path='add' element={<Add_product_admin />} />
+                <Route path='edit/:product_id' element={<Edit_product_admin />} />
+              </Route>
+              <Route path='orders' element={<OrderAdmin />}>
+                <Route path='order_items' element={<Order_items />} />
+              </Route>
+              <Route path='users' element={<UserAdmin />} />
             </Route>
-            <Route path='orders' element={<OrderAdmin/>}>
-              <Route path='order_items' element={<Order_items/>}/>
-            </Route>
-            <Route path='users' element={<UserAdmin/>}/>
           </Route>
         </Route>
 

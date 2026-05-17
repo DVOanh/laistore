@@ -71,18 +71,44 @@
     font-size: 16px;
     margin-left: auto;
     width: fit-content;
+    padding: 6px 14px;         /* Hạ font-size xuống vì h1 mặc định rất to */
+    font-weight: 600;         /* Chữ đậm vừa phải cho nét */
+    border-radius: 6px
 }
 
-.dahuy{
-    color: rgb(225, 44, 44);
+/* 1. Chờ xác nhận: Màu vàng cam (Cảnh báo nhẹ) */
+.status_name.choxacnhan {
+    color: #cc7a00;
+    background-color: #fff9e6;
+    border: 1px solid #ffe0b3;
 }
 
-.choxacnhan{
-    color: rgb(1, 163, 1);
+/* 2. Đã xác nhận: Màu xanh dương (Hệ thống đã nhận) */
+.status_name.daxacnhan {
+    color: #0066cc;
+    background-color: #e6f2ff;
+    border: 1px solid #b3d7ff;
 }
 
-.danggiao{
-    color: rgb(8, 0, 255);
+/* 3. Đang giao: Màu tím hoặc xanh cyan (Đang chuyển động) */
+.status_name.danggiao {
+    color: #008a8a;
+    background-color: #e6ffff;
+    border: 1px solid #b3ffff;
+}
+
+/* 4. Hoàn thành: Màu xanh lá cây (Thành công, an toàn) */
+.status_name.hoanthanh {
+    color: #1e7e34;
+    background-color: #eafaf1;
+    border: 1px solid #c3e6cb;
+}
+
+/* 5. Đã hủy: Màu đỏ xám (Trạng thái đóng/thất bại) */
+.status_name.dahuy {
+    color: #bd2130;
+    background-color: #fdf2f2;
+    border: 1px solid #f5c6cb;
 }
 
 .btnorder{
@@ -149,6 +175,77 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.modaldanhgia{
+    background-color: white;
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.item div {
+    flex: 1;
+}
+
+.item p {
+    margin: 3px 0;
+    font-size: 14px;
+}
+
+.item p:first-child {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.item button {
+    padding: 6px 10px;
+    border: none;
+    background: #ff5722;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.item button:hover {
+    background: #e64a19;
+}
+
+/* NÚT ĐÓNG */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #f1f1f1;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.close-btn:hover {
+    background: #ddd;
 }
 
 @media only screen and (max-width: 719px) {
