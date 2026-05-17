@@ -92,6 +92,10 @@ function OrderAdmin() {
         setVieworder(false)
     }
 
+    function xoadonhoanthanh(order_id){
+        alert(order_id)
+    }
+
     return (
         <div>
             {
@@ -221,7 +225,7 @@ function OrderAdmin() {
                                     {item.status_id === 9 && (
                                         <>
                                             <button
-                                                className="btn-delete" style={{ marginLeft: 10 }}
+                                                className="btn-delete" style={{ marginLeft: 10 }} onClick={()=>xoadonhoanthanh(item.status_id)}
                                             >
                                                 Xóa
                                             </button>

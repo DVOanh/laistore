@@ -42,7 +42,7 @@ function Add_product_admin(){
         })
         .then(res=>res.json())
         .then(data=>{
-            alert(data.message);
+            alert("Thêm sản phẩm thành công");
             navigate('/admin/dashboard/products');
         })
     }
@@ -84,7 +84,7 @@ function Add_product_admin(){
                 <select value={danhmuc} onChange={e=>setDanhmuc(e.target.value)}>
                     {
                         categories.map(cate=>(
-                            <option value={cate.danhmuc_id}>{cate.name}</option>
+                            <option key={cate.danhmuc_id} value={cate.danhmuc_id}>{cate.name}</option>
                         ))
                     }
                 </select>
@@ -94,7 +94,7 @@ function Add_product_admin(){
                 <select value={nhanhieu} onChange={e=>setNhanhieu(e.target.value)}>
                     {
                         brand.map(br=>(
-                            <option value={br.id}>{br.name}</option>
+                            <option key={br.id} value={br.id}>{br.name}</option>
                         ))
                     }
                 </select>

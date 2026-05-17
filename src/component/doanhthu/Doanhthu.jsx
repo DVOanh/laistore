@@ -14,7 +14,7 @@ function Doanhthu() {
     }, []);
     return (
         <div style={{ width: '100%', height: '400px', padding: '20px', background: '#fff', borderRadius: '8px', boxShadow: '0 2px 10px rgba(0,0,0,0.1)' }}>
-            <h4>Thống kê doanh thu 7 ngày gần nhất</h4>
+            <h4>Doanh thu các ngày gần nhất</h4>
             <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={data}>
                     <CartesianGrid strokeDasharray="3 3" vertical={false} />

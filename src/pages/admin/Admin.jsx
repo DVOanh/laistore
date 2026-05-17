@@ -35,7 +35,7 @@ function Dashboard() {
                     <li><NavLink to="/admin/dashboard/products" className={({ isActive }) => isActive ? "dashboard_item active" : "dashboard_item"}>📱 Quản lý sản phẩm</NavLink></li>
                     <li><NavLink to="/admin/dashboard/orders" className={({ isActive }) => isActive ? "dashboard_item active" : "dashboard_item"}>🛒 Quản lý đơn hàng</NavLink></li>
                     <li><NavLink to="/admin/dashboard/users" className={({ isActive }) => isActive ? "dashboard_item active" : "dashboard_item"}>👥 Quản lý người dùng</NavLink></li>
-                    <li><NavLink to="/admin/dashboard/setting" className={({ isActive }) => isActive ? "dashboard_item active" : "dashboard_item"}>⚙️ Setting</NavLink></li>
+                    {/* <li><NavLink to="/admin/dashboard/setting" className={({ isActive }) => isActive ? "dashboard_item active" : "dashboard_item"}>⚙️ Setting</NavLink></li> */}
                     <li><NavLink to="/admin/dashboard/dangxuat" className={({ isActive }) => isActive ? "dashboard_item active" : "dashboard_item"}>⚙️ Đăng xuất</NavLink></li>
                 </ul>
             </div>

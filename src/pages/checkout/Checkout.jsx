@@ -67,7 +67,7 @@ function Checkout() {
                 .then(data => {
                     console.log(data);
                     alert('Mua thanh cong');
-                    navigate('/order')
+                    navigate('/user/purchase')
                 })
         }
 
